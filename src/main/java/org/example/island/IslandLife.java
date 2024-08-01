@@ -9,8 +9,8 @@ public class IslandLife {
     AnimalCharacters animalCharacters=new AnimalCharacters();
     ArrayList<Animal>[][] island= islandInit.island;
     private int countAnimal;
-    public void live(){
-        for(int i=0;i<animalCharacters.animals.size();i++){
+    public void moveAll(){
+        for(int i=0;i<animalCharacters.animalsCage.size();i++){
 
 
         }

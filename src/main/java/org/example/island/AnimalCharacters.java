@@ -9,12 +9,17 @@ import java.util.Map;
 
 public class AnimalCharacters {
 
-   public Map<String, Integer> animals = new HashMap<String, Integer>() {{
+   public Map<String, Integer> animalsCage = new HashMap<String, Integer>() {{
         put(WOLF_NAME, WOLF_MAX_IN_CAGE);
         put(RABBIT_NAME, RABBIT_MAX_IN_CAGE);
     }};
-    public static final int WIDTH = 2;
-    public static final int HEIGHT = 2;
+   public Map<String, Integer> animalsSpeed = new HashMap<String, Integer>() {{
+        put(WOLF_NAME, WOLF_MAX_SPEED);
+        put(RABBIT_NAME, RABBIT_MAX_SPEED);
+    }};
+
+    public static final int WIDTH = 5;
+    public static final int HEIGHT = 5;
     public static final String WOLF_NAME="Wolf";
     public static final double WOLF_WEIGHT=50;
     public static final int WOLF_MAX_IN_CAGE=30;
