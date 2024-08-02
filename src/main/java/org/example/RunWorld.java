@@ -10,9 +10,19 @@ public class RunWorld {
         islandInit.live();
         while (true){
             islandInit.moveAll();
-            Thread.sleep(2000);
+            Thread.sleep(1100);
             islandInit.live();
-            Thread.sleep(2000);
+            Thread.sleep(1100);
+            islandInit.eatAll();
+            Thread.sleep(1100);
+            islandInit.allReproduction();
+            Thread.sleep(1100);
+            islandInit.allDeath();
+            Thread.sleep(1100);
+            islandInit.info();
+            Thread.sleep(1100);
+            islandInit.nextTurn();
+            Thread.sleep(1100);
         }
     }
 

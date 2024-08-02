@@ -17,12 +17,16 @@ public class AnimalCharacters {
         put(WOLF_NAME, WOLF_MAX_SPEED);
         put(RABBIT_NAME, RABBIT_MAX_SPEED);
     }};
+    public Map<String, Double> animalsWeight = new HashMap<String, Double>() {{
+        put(WOLF_NAME, WOLF_WEIGHT);
+        put(RABBIT_NAME, RABBIT_WEIGHT);
+    }};
 
-    public static final int WIDTH = 5;
-    public static final int HEIGHT = 5;
+    public static final int WIDTH = 9;
+    public static final int HEIGHT = 9;
     public static final String WOLF_NAME="Wolf";
     public static final double WOLF_WEIGHT=50;
-    public static final int WOLF_MAX_IN_CAGE=30;
+    public static final int WOLF_MAX_IN_CAGE=10;
     public static final int WOLF_MAX_SPEED=3;
     public static final double WOLF_MAX_EAT=8;
     public static final String RABBIT_NAME="Rabbit";
