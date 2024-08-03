@@ -1,8 +1,6 @@
 package org.example.animals.poolAnimals;
 
-import org.example.animals.Animal;
 import org.example.animals.Predator;
-import org.example.island.AnimalCharacters;
 
 public class Wolf extends Predator {
 

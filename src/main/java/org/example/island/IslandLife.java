@@ -1,6 +1,7 @@
 package org.example.island;
 
 import org.example.animals.Animal;
+import org.example.island.characters.AnimalCharacters;
 
 import java.util.ArrayList;
 

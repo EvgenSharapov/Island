@@ -1,13 +1,12 @@
 package org.example.island;
 import org.example.animals.Animal;
 import org.example.animals.Direction;
+import org.example.island.characters.AnimalCharacters;
 
 import java.util.ArrayList;
-import java.util.Random;
-import java.util.concurrent.ThreadLocalRandom;
 
-import static org.example.island.AnimalCharacters.HEIGHT;
-import static org.example.island.AnimalCharacters.WIDTH;
+import static org.example.island.characters.AnimalCharacters.HEIGHT;
+import static org.example.island.characters.AnimalCharacters.WIDTH;
 
 public class IslandInit {
     AnimalCharacters animalCharacters=new AnimalCharacters();
@@ -130,6 +129,7 @@ public class IslandInit {
                             island[i][j].remove(anim);
                             animal[x].setEat(true);break;
                         }
+                        else {animal[x].setEat(true);break;}
                     }
                 }
             }
@@ -143,9 +143,10 @@ public class IslandInit {
                 ArrayList<Animal> animals = island[i][j];
                 for(int x=0;x<animal.length;x++){
                     for (Animal anim : new ArrayList<>(animals)) {
-                        if((animal[x].getAge()>3)&& (!animal[x].isReproduction())&&(!anim.isReproduction())){
-                            animal[x].reproduction(anim);
-                            island[i][j].add(factory.create(anim.toString()));
+                        if((animal[x].getAge()>3)&& (!animal[x].isReproduction()&&!anim.isReproduction())){
+                            animal[x].setReproduction(true);anim.setReproduction(true);
+                            if(Randomizer.getInstance().randomizer(9)<animalCharacters.CHANCE_REPRODUCTION){
+                            island[i][j].add(factory.create(anim.toString()));}
                         }
                     }
                 }
@@ -159,11 +160,12 @@ public class IslandInit {
             for (int j = 0; j < HEIGHT; j++) {
                 ArrayList<Animal> animals = island[i][j];
                 for (Animal anim : new ArrayList<>(animals)) {
-                    anim.setWeight(anim.getWeight()*0.8);
+                    anim.setWeight(anim.getWeight()*0.9);
                     anim.setEat(false);
                     anim.setReproduction(false);
                     anim.setAge(anim.getAge()+1);
                     if(anim.toString().equals("Rabbit")){anim.setWeight(anim.getWeight()+0.4);}
+                    if(anim.toString().equals("Duck")){anim.setWeight(anim.getWeight()+0.5);}
                 }
             }
         }
@@ -174,7 +176,7 @@ public class IslandInit {
             for (int j = 0; j < HEIGHT; j++) {
                 ArrayList<Animal> animals = island[i][j];
                 for (Animal anim : new ArrayList<>(animals)) {
-                if((anim.getWeight()*100<animalCharacters.animalsWeight.get(anim.toString())*70)||anim.getAge()>10){
+                if((anim.getWeight()*100<animalCharacters.animalsWeight.get(anim.toString())*55)||anim.getAge()>10){
                     island[i][j].remove(anim);
                     countDeath++;
                 }
