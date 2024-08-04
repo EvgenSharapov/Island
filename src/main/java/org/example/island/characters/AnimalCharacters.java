@@ -73,7 +73,7 @@ public class AnimalCharacters {
 
     public static final String WOLF_NAME="Wolf";
     public static final double WOLF_WEIGHT=50;
-    public static final int WOLF_MAX_IN_CAGE=40;
+    public static final int WOLF_MAX_IN_CAGE=30;
     public static final int WOLF_MAX_SPEED=3;
     public static final double WOLF_MAX_EAT=8;
     public static final String RABBIT_NAME="Rabbit";
@@ -84,7 +84,7 @@ public class AnimalCharacters {
 
     public static final String FOX_NAME="Fox";
     public static final double FOX_WEIGHT=8;
-    public static final int FOX_MAX_IN_CAGE=40;
+    public static final int FOX_MAX_IN_CAGE=30;
     public static final int FOX_MAX_SPEED=2;
     public static final double FOX_MAX_EAT=2;
     public static final String BOA_NAME="Boa";
@@ -99,7 +99,7 @@ public class AnimalCharacters {
     public static final double EAGLE_MAX_EAT=1;
     public static final String DUCK_NAME="Duck";
     public static final double DUCK_WEIGHT=4;
-    public static final int DUCK_MAX_IN_CAGE=50;
+    public static final int DUCK_MAX_IN_CAGE=200;
     public static final int DUCK_MAX_SPEED=4;
     public static final double DUCK_MAX_EAT=1;
 
@@ -110,7 +110,7 @@ public class AnimalCharacters {
     public static final double BEAR_MAX_EAT=80;
     public static final String HORSE_NAME="Horse";
     public static final double HORSE_WEIGHT=400;
-    public static final int HORSE_MAX_IN_CAGE=10;
+    public static final int HORSE_MAX_IN_CAGE=20;
     public static final int HORSE_MAX_SPEED=4;
     public static final double HORSE_MAX_EAT=1;
     public static final String DEER_NAME="Deer";
@@ -120,18 +120,18 @@ public class AnimalCharacters {
     public static final double DEER_MAX_EAT=50;
     public static final String MOUSE_NAME="Mouse";
     public static final double MOUSE_WEIGHT=0.05;
-    public static final int MOUSE_MAX_IN_CAGE=100;
+    public static final int MOUSE_MAX_IN_CAGE=500;
     public static final int MOUSE_MAX_SPEED=1;
     public static final double MOUSE_MAX_EAT=0.01;
     public static final String GOAT_NAME="Goat";
     public static final double GOAT_WEIGHT=60;
-    public static final int GOAT_MAX_IN_CAGE=40;
+    public static final int GOAT_MAX_IN_CAGE=140;
     public static final int GOAT_MAX_SPEED=3;
     public static final double GOAT_MAX_EAT=10;
 
     public static final String SHEEP_NAME="Sheep";
     public static final double SHEEP_WEIGHT=70;
-    public static final int SHEEP_MAX_IN_CAGE=40;
+    public static final int SHEEP_MAX_IN_CAGE=140;
     public static final int SHEEP_MAX_SPEED=3;
     public static final double SHEEP_MAX_EAT=15;
     public static final String WILD_BOAR_NAME="WildBoar";

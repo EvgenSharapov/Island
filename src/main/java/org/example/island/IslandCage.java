@@ -2,6 +2,7 @@ package org.example.island;
 
 import org.example.animals.Animal;
 import org.example.island.characters.AnimalCharacters;
+import org.example.island.factory.FactoryAnimals;
 
 import java.util.ArrayList;
 import java.util.Random;

@@ -2,17 +2,23 @@ package org.example.island;
 import org.example.animals.Animal;
 import org.example.animals.Direction;
 import org.example.island.characters.AnimalCharacters;
-import org.example.island.characters.IslandCharacters;
+import org.example.island.factory.FactoryAnimals;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
+
 import static org.example.island.characters.IslandCharacters.*;
 
 
 public class IslandInit {
-    public ArrayList<Animal>[][] island = new ArrayList[HEIGHT][WIDTH];
+    public ArrayList<Animal>[][] island = new ArrayList[WIDTH][HEIGHT];
     private int countAnimalInCage;
     private int countAllAnimals;
-    private int countDeath;
+    private int countHungerDeath;
+    private int countAgeDeath;
+
+    public Map<String, Integer>[][] animalsMax = new HashMap[WIDTH][HEIGHT];
     FactoryAnimals factory=new FactoryAnimals();
 
 
@@ -29,7 +35,7 @@ public class IslandInit {
         for (int i = 0; i < WIDTH; i++) {
             for (int j = 0; j < HEIGHT; j++) {
                 ArrayList<Animal>animals=island[i][j];
-                System.out.println("Клетка-"+i+"-"+j);
+                Map<String, Integer>animalTemp = new HashMap<>();
         for(String str:AnimalCharacters.getInstance().animalsCage.keySet()){
             countAnimalInCage=0;
             for(Animal animal:animals){
@@ -37,8 +43,9 @@ public class IslandInit {
                     countAnimalInCage++;
                 }
             }
-            System.out.println(str+"-"+countAnimalInCage);
+            animalTemp.put(str,countAnimalInCage);
         }
+        animalsMax[i][j]=animalTemp;
             }
         }
     }
@@ -115,6 +122,7 @@ public class IslandInit {
             }
             System.out.println(str+"-"+countAllAnimals);
         }
+        System.out.println("==========");
     }
     public void eatAll(){
         for (int i = 0; i < WIDTH; i++) {
@@ -142,8 +150,11 @@ public class IslandInit {
             for (int j = 0; j < HEIGHT; j++) {
                 Animal[]animal= island[i][j].toArray(new Animal[island[i][j].size()]);
                 ArrayList<Animal> animals = island[i][j];
+
+
                 for(int x=0;x<animal.length;x++){
                     for (Animal anim : new ArrayList<>(animals)) {
+                        if(animalsMax[i][j].get(anim.toString())>=AnimalCharacters.getInstance().animalsCage.get(anim.toString())){continue;}
                         if((animal[x].getAge()>3)&&animal[x].reproduction(anim)){
                             if(Randomizer.getInstance().randomizer(9)<CHANCE_REPRODUCTION){
                             island[i][j].add(factory.create(anim.toString()));}
@@ -160,7 +171,7 @@ public class IslandInit {
             for (int j = 0; j < HEIGHT; j++) {
                 ArrayList<Animal> animals = island[i][j];
                 for (Animal anim : new ArrayList<>(animals)) {
-                    anim.setWeight(anim.getWeight()*0.9);
+                    anim.setWeight(anim.getWeight()*WEIGHT_LOSS_PER_TURN);
                     anim.setEat(false);
                     anim.setReproduction(false);
                     anim.setAge(anim.getAge()+1);
@@ -179,19 +190,23 @@ public class IslandInit {
         }
     }
     public void allDeath() {
-        countDeath=0;
+        countHungerDeath=0;
+        countAgeDeath=0;
+
         for (int i = 0; i < WIDTH; i++) {
             for (int j = 0; j < HEIGHT; j++) {
                 ArrayList<Animal> animals = island[i][j];
                 for (Animal anim : new ArrayList<>(animals)) {
-                if((anim.getWeight()*100<AnimalCharacters.getInstance().animalsWeight.get(anim.toString())*55)||anim.getAge()>10){
+                if((anim.getWeight()*100<AnimalCharacters.getInstance().animalsWeight.get(anim.toString())*DEATH_WEIGHT)){
                     island[i][j].remove(anim);
-                    countDeath++;
-                }
+                    countHungerDeath++;}
+                   else if(anim.getAge()>DEATH_AGE){island[i][j].remove(anim);
+                    countAgeDeath++;}
                 }
             }
         }
-        System.out.println("Умерло от голода: "+countDeath);
+        System.out.println("Умерло от голода: "+countHungerDeath);
+        System.out.println("Умерло от старости: "+countAgeDeath);
     }
 
 }

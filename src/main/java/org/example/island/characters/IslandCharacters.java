@@ -10,8 +10,12 @@ public class IslandCharacters {
     }
     public static final int CHANCE_REPRODUCTION=2;//30%
     public static final int START_AGE=1;
+    public static final int DEATH_AGE=12;
+    public static final int DEATH_WEIGHT=55;//55%
+    public static final double WEIGHT_LOSS_PER_TURN=0.9;
+    public static final boolean START_IS_REPRODUCTION=false;
 
-    public static final int WIDTH = 9;
-    public static final int HEIGHT = 9;
+    public static final int WIDTH = 10;
+    public static final int HEIGHT = 10;
 
 }

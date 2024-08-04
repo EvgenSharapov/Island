@@ -4,10 +4,8 @@ import org.example.island.ChanceToEat;
 import org.example.island.Randomizer;
 
 public abstract class Animal {
-    protected double weight;
-    protected int maxInCage;
-    protected int maxSpeed;
-    protected double maxEat;
+    private double weight;
+    private double maxEat;
     private boolean isEat;
     private boolean isReproduction;
     private int age;
