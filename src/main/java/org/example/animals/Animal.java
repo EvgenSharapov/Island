@@ -8,6 +8,22 @@ public abstract class Animal {
     protected int maxInCage;
     protected int maxSpeed;
     protected double maxEat;
+    private boolean isEat;
+    private boolean isReproduction;
+    private int age;
+    private ChanceToEat chanceToEat=new ChanceToEat();
+    public Animal(double weight, boolean isEat, boolean isReproduction,int age,double maxEat) {
+        this.weight = weight;
+        this.isEat=isEat;
+        this.isReproduction=isReproduction;
+        this.age=age;
+        this.maxEat=maxEat;
+
+    }
+
+    public double getMaxEat() {
+        return maxEat;
+    }
 
     public int getAge() {
         return age;
@@ -17,10 +33,7 @@ public abstract class Animal {
         this.age = age;
     }
 
-    private boolean isEat;
-    private boolean isReproduction;
-    private int age;
-    private ChanceToEat chanceToEat=new ChanceToEat();
+
 
 
     public boolean isReproduction() {
@@ -31,13 +44,7 @@ public abstract class Animal {
         isReproduction = reproduction;
     }
 
-    public Animal(double weight, boolean isEat, boolean isReproduction,int age) {
-        this.weight = weight;
-        this.isEat=isEat;
-        this.isReproduction=isReproduction;
-        this.age=age;
 
-    }
 
     public boolean isEat() {
         return isEat;

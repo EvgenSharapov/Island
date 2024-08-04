@@ -7,11 +7,10 @@ import java.util.ArrayList;
 
 public class IslandLife {
     IslandInit islandInit;
-    AnimalCharacters animalCharacters=new AnimalCharacters();
     ArrayList<Animal>[][] island= islandInit.island;
     private int countAnimal;
     public void moveAll(){
-        for(int i=0;i<animalCharacters.animalsCage.size();i++){
+        for(int i=0;i<AnimalCharacters.getInstance().animalsCage.size();i++){
 
 
         }

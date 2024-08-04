@@ -9,7 +9,6 @@ import java.util.Random;
 public class IslandCage {
     FactoryAnimals factory=new FactoryAnimals();
     public ArrayList<Animal>animalsInCage;
-    AnimalCharacters animalCharacters=new AnimalCharacters();
     private int x;
     private int y;
 
@@ -37,8 +36,8 @@ public class IslandCage {
     public ArrayList<Animal> getRandAnimalsInCage() {
         ArrayList<Animal>animals=new ArrayList<>();
             Random r = new Random();
-        for (String str:animalCharacters.animalsCage.keySet()){
-            int random= r.nextInt(animalCharacters.animalsCage.get(str));
+        for (String str:AnimalCharacters.getInstance().animalsCage.keySet()){
+            int random= r.nextInt(AnimalCharacters.getInstance().animalsCage.get(str));
             if(random!=0){
                 for(int i=1;i<=random;i++){
                     animals.add(factory.create(str));
