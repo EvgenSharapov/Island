@@ -2,14 +2,14 @@ package org.example.island;
 import org.example.animals.Animal;
 import org.example.animals.Direction;
 import org.example.island.characters.AnimalCharacters;
+import org.example.island.characters.IslandCharacters;
 
 import java.util.ArrayList;
+import static org.example.island.characters.IslandCharacters.*;
 
-import static org.example.island.characters.AnimalCharacters.HEIGHT;
-import static org.example.island.characters.AnimalCharacters.WIDTH;
 
 public class IslandInit {
-    public ArrayList<Animal>[][] island = new ArrayList[AnimalCharacters.getInstance().HEIGHT][AnimalCharacters.getInstance().WIDTH];
+    public ArrayList<Animal>[][] island = new ArrayList[HEIGHT][WIDTH];
     private int countAnimalInCage;
     private int countAllAnimals;
     private int countDeath;
@@ -144,9 +144,8 @@ public class IslandInit {
                 ArrayList<Animal> animals = island[i][j];
                 for(int x=0;x<animal.length;x++){
                     for (Animal anim : new ArrayList<>(animals)) {
-                        if((animal[x].getAge()>3)&& (!animal[x].isReproduction()&&!anim.isReproduction())){
-                            animal[x].setReproduction(true);anim.setReproduction(true);
-                            if(Randomizer.getInstance().randomizer(9)<AnimalCharacters.getInstance().CHANCE_REPRODUCTION){
+                        if((animal[x].getAge()>3)&&animal[x].reproduction(anim)){
+                            if(Randomizer.getInstance().randomizer(9)<CHANCE_REPRODUCTION){
                             island[i][j].add(factory.create(anim.toString()));}
                         }
                     }

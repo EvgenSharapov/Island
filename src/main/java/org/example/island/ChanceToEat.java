@@ -1,7 +1,7 @@
 package org.example.island;
 
 import org.example.animals.Animal;
-import org.example.island.characters.AnimalCharacters;
+import static org.example.island.characters.AnimalCharacters.*;
 
 public class ChanceToEat {
     private Animal eater;
@@ -9,77 +9,65 @@ public class ChanceToEat {
 
 
     public int chanceEat(Animal eater,Animal eat){
-        if(eater.toString().equals(AnimalCharacters.getInstance().WOLF_NAME)) {
-                if (eat.toString().equals(AnimalCharacters.getInstance().RABBIT_NAME)) {return 60;}
-                if (eat.toString().equals(AnimalCharacters.getInstance().DUCK_NAME)) {return 40;}
-                if (eat.toString().equals(AnimalCharacters.getInstance().HORSE_NAME)) {return 10;}
-                if (eat.toString().equals(AnimalCharacters.getInstance().DEER_NAME)) {return 15;}
-                if (eat.toString().equals(AnimalCharacters.getInstance().MOUSE_NAME)) {return 80;}
-                if (eat.toString().equals(AnimalCharacters.getInstance().GOAT_NAME)) {return 60;}
-                if (eat.toString().equals(AnimalCharacters.getInstance().SHEEP_NAME)) {return 70;}
-                if (eat.toString().equals(AnimalCharacters.getInstance().WILD_BOAR_NAME)) {return 15;}
-                if (eat.toString().equals(AnimalCharacters.getInstance().BUFFALO_NAME)) {return 10;}
-
-
-
-
-        }
-
-        if(eater.toString().equals(AnimalCharacters.getInstance().FOX_NAME)){
-            if(eat.toString().equals(AnimalCharacters.getInstance().RABBIT_NAME)){return 70;}
-            if(eat.toString().equals(AnimalCharacters.getInstance().DUCK_NAME)){return 60;}
-            if (eat.toString().equals(AnimalCharacters.getInstance().MOUSE_NAME)) {return 90;}
-
-
-
-        }
-
-        if(eater.toString().equals(AnimalCharacters.getInstance().BOA_NAME)){
-            if(eat.toString().equals(AnimalCharacters.getInstance().FOX_NAME)){return 15;}
-            if(eat.toString().equals(AnimalCharacters.getInstance().RABBIT_NAME)){return 20;}
-            if(eat.toString().equals(AnimalCharacters.getInstance().DUCK_NAME)){return 10;}
-            if (eat.toString().equals(AnimalCharacters.getInstance().MOUSE_NAME)) {return 40;}
-
-
-
-
-
-        }
-
-        if(eater.toString().equals(AnimalCharacters.getInstance().EAGLE_NAME)){
-            if(eat.toString().equals(AnimalCharacters.getInstance().FOX_NAME)){return 10;}
-            if(eat.toString().equals(AnimalCharacters.getInstance().RABBIT_NAME)){return 90;}
-            if(eat.toString().equals(AnimalCharacters.getInstance().DUCK_NAME)){return 80;}
-            if (eat.toString().equals(AnimalCharacters.getInstance().MOUSE_NAME)) {return 90;}
-
-
-        }
-
-
-
-
-        if(eater.toString().equals(AnimalCharacters.getInstance().BEAR_NAME)){
-            if(eat.toString().equals(AnimalCharacters.getInstance().BOA_NAME)){return 80;}
-            if(eat.toString().equals(AnimalCharacters.getInstance().HORSE_NAME)){return 40;}
-            if(eat.toString().equals(AnimalCharacters.getInstance().RABBIT_NAME)){return 80;}
-            if(eat.toString().equals(AnimalCharacters.getInstance().DUCK_NAME)){return 10;}
-            if(eat.toString().equals(AnimalCharacters.getInstance().DEER_NAME)){return 80;}
-            if (eat.toString().equals(AnimalCharacters.getInstance().MOUSE_NAME)) {return 90;}
-            if (eat.toString().equals(AnimalCharacters.getInstance().GOAT_NAME)) {return 70;}
-            if (eat.toString().equals(AnimalCharacters.getInstance().SHEEP_NAME)) {return 70;}
-            if (eat.toString().equals(AnimalCharacters.getInstance().WILD_BOAR_NAME)) {return 50;}
-            if (eat.toString().equals(AnimalCharacters.getInstance().BUFFALO_NAME)) {return 20;}
+        if(eater.toString().equals(WOLF_NAME)) {
+            switch (eat.toString()){
+                case RABBIT_NAME:
+                case GOAT_NAME:return 60;
+                case DUCK_NAME:return 40;
+                case HORSE_NAME:
+                case BUFFALO_NAME:return 10;
+                case DEER_NAME:
+                case WILD_BOAR_NAME:return 15;
+                case MOUSE_NAME:return 80;
+                case SHEEP_NAME:return 70;
             }
-
-
-
-
-
-
-
-
-
-        else{return 0;}
+        }
+        if(eater.toString().equals(FOX_NAME)) {
+            switch (eat.toString()) {
+                case RABBIT_NAME:
+                    return 70;
+                case DUCK_NAME:
+                    return 60;
+                case MOUSE_NAME:
+                    return 90;
+            }
+        }
+        if(eater.toString().equals(BOA_NAME)){
+            switch (eat.toString()){
+                case RABBIT_NAME:return 20;
+                case DUCK_NAME:return 10;
+                case MOUSE_NAME:return 40;
+            }
+        }
+        if(eater.toString().equals(EAGLE_NAME)){
+            switch (eat.toString()){
+                case FOX_NAME:return 10;
+                case RABBIT_NAME:
+                case MOUSE_NAME:return 90;
+                case DUCK_NAME:return 80;
+            }
+        }
+        if(eater.toString().equals(BEAR_NAME)) {
+            switch (eat.toString()) {
+                case BOA_NAME:
+                case RABBIT_NAME:
+                case DEER_NAME:
+                    return 80;
+                case HORSE_NAME:
+                    return 40;
+                case DUCK_NAME:
+                    return 10;
+                case MOUSE_NAME:
+                    return 90;
+                case SHEEP_NAME:
+                case GOAT_NAME:
+                    return 70;
+                case WILD_BOAR_NAME:
+                    return 50;
+                case BUFFALO_NAME:
+                    return 20;
+            }
+        }
         return 0;
     }
 

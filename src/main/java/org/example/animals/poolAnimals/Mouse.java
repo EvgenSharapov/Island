@@ -5,7 +5,7 @@ import org.example.island.characters.AnimalCharacters;
 
 public class Mouse extends Herbivore {
     public Mouse(double weight,boolean isEat,boolean isReproduction,int age) {
-        super(weight,isEat,isReproduction,age, AnimalCharacters.getInstance().DEER_MAX_EAT);
+        super(weight,isEat,isReproduction,age, AnimalCharacters.getInstance().MOUSE_MAX_EAT);
     }
 
     @Override

@@ -70,13 +70,10 @@ public class AnimalCharacters {
         put(WILD_BOAR_NAME,WILD_BOAR_WEIGHT);
         put(BUFFALO_NAME,BUFFALO_WEIGHT);
     }};
-    public static final int CHANCE_REPRODUCTION=2;//30%
 
-    public static final int WIDTH = 9;
-    public static final int HEIGHT = 9;
     public static final String WOLF_NAME="Wolf";
     public static final double WOLF_WEIGHT=50;
-    public static final int WOLF_MAX_IN_CAGE=30;
+    public static final int WOLF_MAX_IN_CAGE=40;
     public static final int WOLF_MAX_SPEED=3;
     public static final double WOLF_MAX_EAT=8;
     public static final String RABBIT_NAME="Rabbit";
@@ -87,7 +84,7 @@ public class AnimalCharacters {
 
     public static final String FOX_NAME="Fox";
     public static final double FOX_WEIGHT=8;
-    public static final int FOX_MAX_IN_CAGE=30;
+    public static final int FOX_MAX_IN_CAGE=40;
     public static final int FOX_MAX_SPEED=2;
     public static final double FOX_MAX_EAT=2;
     public static final String BOA_NAME="Boa";

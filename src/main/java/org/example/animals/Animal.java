@@ -70,9 +70,9 @@ public abstract class Animal {
     public void move(){
 
     }
-    public void reproduction(Animal animal){
-        if(this.toString().equals(animal.toString())){this.isReproduction=true;animal.isReproduction=true;}
-
+    public boolean reproduction(Animal animal){
+        if(this.toString().equals(animal.toString())&&(this.isReproduction==false&&animal.isReproduction==false)){this.setReproduction(true);animal.setReproduction(true);return true;}
+        return false;
     }
     public void death(){}
 }
