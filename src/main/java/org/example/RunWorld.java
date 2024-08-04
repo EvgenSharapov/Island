@@ -9,6 +9,7 @@ public class RunWorld {
         IslandInit islandInit=new IslandInit();
         VegetationLive vegetationLive=new VegetationLive();
         islandInit.initialize();
+        vegetationLive.createVegetation();
         islandInit.live();
         while (true){
             islandInit.moveAll();
@@ -23,7 +24,7 @@ public class RunWorld {
             Thread.sleep(20);
             islandInit.info();
             Thread.sleep(20);
-            vegetationLive.createVegetation();
+            vegetationLive.vegetationReproduction();
             Thread.sleep(20);
             islandInit.nextTurn();
             Thread.sleep(20);
