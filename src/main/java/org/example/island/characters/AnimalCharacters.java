@@ -16,12 +16,6 @@ public class AnimalCharacters {
     }
     private AnimalCharacters() {
     }
-
-
-
-
-
-
    public Map<String, Integer> animalsCage = new HashMap<String, Integer>() {{
         put(WOLF_NAME, WOLF_MAX_IN_CAGE);
         put(RABBIT_NAME, RABBIT_MAX_IN_CAGE);
@@ -37,6 +31,7 @@ public class AnimalCharacters {
         put(SHEEP_NAME,SHEEP_MAX_IN_CAGE);
         put(WILD_BOAR_NAME,WILD_BOAR_MAX_IN_CAGE);
         put(BUFFALO_NAME,BUFFALO_MAX_IN_CAGE);
+        put(BUG_NAME,BUG_MAX_IN_CAGE);
     }};
    public Map<String, Integer> animalsSpeed = new HashMap<String, Integer>() {{
         put(WOLF_NAME, WOLF_MAX_SPEED);
@@ -53,6 +48,7 @@ public class AnimalCharacters {
         put(SHEEP_NAME,SHEEP_MAX_SPEED);
         put(WILD_BOAR_NAME,WILD_BOAR_MAX_SPEED);
         put(BUFFALO_NAME,BUFFALO_MAX_SPEED);
+        put(BUG_NAME,BUG_MAX_SPEED);
     }};
     public Map<String, Double> animalsWeight = new HashMap<String, Double>() {{
         put(WOLF_NAME, WOLF_WEIGHT);
@@ -69,6 +65,7 @@ public class AnimalCharacters {
         put(SHEEP_NAME,SHEEP_WEIGHT);
         put(WILD_BOAR_NAME,WILD_BOAR_WEIGHT);
         put(BUFFALO_NAME,BUFFALO_WEIGHT);
+        put(BUG_NAME,BUG_WEIGHT);
     }};
 
     public static final String WOLF_NAME="Wolf";
@@ -144,7 +141,11 @@ public class AnimalCharacters {
     public static final int BUFFALO_MAX_IN_CAGE=10;
     public static final int BUFFALO_MAX_SPEED=3;
     public static final double BUFFALO_MAX_EAT=100;
-
+    public static final String BUG_NAME="Bug";
+    public static final double BUG_WEIGHT=0.02;
+    public static final int BUG_MAX_IN_CAGE=200;
+    public static final int BUG_MAX_SPEED=1;
+    public static final double BUG_MAX_EAT=0;
 
 
 

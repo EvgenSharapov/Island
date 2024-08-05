@@ -30,7 +30,7 @@ public abstract class Vegetation {
         isReproduction = reproduction;
     }
     public boolean reproduction(){
-       if(CHANCE_REPRODUCTION> Randomizer.getInstance().randomizer(9)&&this.isReproduction==false)
+       if(CHANCE_REPRODUCTION_VEGETATION> Randomizer.getInstance().randomizer(9)&&this.isReproduction==false)
         {this.setReproduction(true);return true;
         }
        else this.setReproduction(true);return false;

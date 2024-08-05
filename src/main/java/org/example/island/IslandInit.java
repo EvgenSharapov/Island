@@ -7,6 +7,7 @@ import org.example.island.factory.FactoryAnimals;
 import org.example.vegetation.Vegetation;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -15,11 +16,12 @@ import static org.example.island.characters.IslandCharacters.*;
 
 public class IslandInit {
     public ArrayList<Animal>[][] island = new ArrayList[WIDTH][HEIGHT];
-    VegetationLive vegetationLive=new VegetationLive();
     private int countAnimalInCage;
     private int countAllAnimals;
     private int countHungerDeath;
     private int countAgeDeath;
+    private int ageOfTheIsland;
+
 
     public Map<String, Integer>[][] animalsMax = new HashMap[WIDTH][HEIGHT];
     FactoryAnimals factory=new FactoryAnimals();
@@ -111,6 +113,7 @@ public class IslandInit {
         }
     }
     public void info() {
+        System.out.println("=Животные=");
         for (String str : AnimalCharacters.getInstance().animalsCage.keySet()) {
             countAllAnimals = 0;
             for (int i = 0; i < WIDTH; i++) {
@@ -125,11 +128,19 @@ public class IslandInit {
             }
             System.out.println(str + "-" + countAllAnimals);
         }
+        System.out.println("=Растения=");
+        Map<String, Integer>vegCount=VegetationLive.getInstance().getCountAll();
+        for(String str: vegCount.keySet()) {
+            System.out.println(str+": "+vegCount.get(str));
+
+        }
+
         System.out.println("==========");
 
     }
 
     public void eatAll(){
+        ArrayList<Vegetation>[][]vegTemp=VegetationLive.getInstance().getVegetationPull();
         for (int i = 0; i < WIDTH; i++) {
             for (int j = 0; j < HEIGHT; j++) {
                 ArrayList<Animal> animals = island[i][j];
@@ -145,9 +156,20 @@ public class IslandInit {
                         }
                         else {animal[x].setEat(true);break;}
                     }
+                    for(Vegetation vegetation:new ArrayList<>(vegTemp[i][j])){
+                        if(animal[x].eat(vegetation)){
+                            if(vegetation.getWeight()>animal[x].getMaxEat()){
+                                animal[x].setWeight(animal[x].getWeight()+animal[x].getMaxEat());
+                            }
+                            else{animal[x].setWeight(animal[x].getWeight()+vegetation.getWeight());}
+                            vegTemp[i][j].remove(vegetation);
+                            animal[x].setEat(true);break;
+                        }
+                    }
                 }
             }
         }
+        VegetationLive.getInstance().setVegetationPull(vegTemp);
     }
     public void allReproduction(){
 
@@ -172,6 +194,7 @@ public class IslandInit {
     }
 
     public void nextTurn() {
+        ageOfTheIsland++;
         for (int i = 0; i < WIDTH; i++) {
             for (int j = 0; j < HEIGHT; j++) {
                 ArrayList<Animal> animals = island[i][j];
@@ -180,16 +203,6 @@ public class IslandInit {
                     anim.setEat(false);
                     anim.setReproduction(false);
                     anim.setAge(anim.getAge()+1);
-                    if(anim.toString().equals("Rabbit")){anim.setWeight(anim.getWeight()+0.4);}
-                    if(anim.toString().equals("Duck")){anim.setWeight(anim.getWeight()+0.5);}
-                    if(anim.toString().equals("Horse")){anim.setWeight(anim.getWeight()+15);}
-                    if(anim.toString().equals("Deer")){anim.setWeight(anim.getWeight()+13);}
-                    if(anim.toString().equals("Mouse")){anim.setWeight(anim.getWeight()+0.02);}
-                    if(anim.toString().equals("Goat")){anim.setWeight(anim.getWeight()+5);}
-                    if(anim.toString().equals("Sheep")){anim.setWeight(anim.getWeight()+5);}
-                    if(anim.toString().equals("WildBoar")){anim.setWeight(anim.getWeight()+50);}
-                    if(anim.toString().equals("Buffalo")){anim.setWeight(anim.getWeight()+100);}
-
                 }
 
             }
@@ -206,11 +219,11 @@ public class IslandInit {
                 if((anim.getWeight()*100<AnimalCharacters.getInstance().animalsWeight.get(anim.toString())*DEATH_WEIGHT)){
                     island[i][j].remove(anim);
                     countHungerDeath++;}
-                   else if(anim.getAge()>DEATH_AGE){island[i][j].remove(anim);
-                    countAgeDeath++;}
+                   else if(anim.getAge()>DEATH_AGE){island[i][j].remove(anim);}
                 }
             }
         }
+        System.out.println("Возраст острова: "+ageOfTheIsland);
         System.out.println("Умерло от голода: "+countHungerDeath);
         System.out.println("Умерло от старости: "+countAgeDeath);
     }

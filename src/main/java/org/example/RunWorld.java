@@ -7,11 +7,10 @@ import org.example.island.VegetationLive;
 public class RunWorld {
     public static void main(String[] args) throws InterruptedException {
         IslandInit islandInit=new IslandInit();
-        VegetationLive vegetationLive=new VegetationLive();
         islandInit.initialize();
-        vegetationLive.initializeVegetation();
+        VegetationLive.getInstance().initializeVegetation();
         islandInit.live();
-        vegetationLive.countInCageAll();
+        VegetationLive.getInstance().countInCageAll();
         while (true){
             islandInit.moveAll();
             Thread.sleep(20);
@@ -20,9 +19,9 @@ public class RunWorld {
 
 
 
-            vegetationLive.countInCageAll();
+            VegetationLive.getInstance().countInCageAll();
             Thread.sleep(20);
-            vegetationLive.countAll();
+            VegetationLive.getInstance().countAll();
             Thread.sleep(20);
 
             islandInit.eatAll();
@@ -30,7 +29,7 @@ public class RunWorld {
             islandInit.allReproduction();
             Thread.sleep(20);
 
-            vegetationLive.vegetationReproduction();
+            VegetationLive.getInstance().vegetationReproduction();
 
             Thread.sleep(20);
             islandInit.allDeath();
@@ -40,7 +39,7 @@ public class RunWorld {
             Thread.sleep(20);
             islandInit.nextTurn();
             Thread.sleep(20);
-            vegetationLive.nextTurnVeg();
+            VegetationLive.getInstance().nextTurnVeg();
             Thread.sleep(20);
         }
     }

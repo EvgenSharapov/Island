@@ -6,21 +6,31 @@ import org.example.island.characters.VegetationCharacters;
 import org.example.island.factory.FactoryVegetation;
 import org.example.vegetation.Vegetation;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 import static org.example.island.characters.IslandCharacters.*;
 
 
 public class VegetationLive {
+    private static VegetationLive ourInstance = new VegetationLive();
+
+    public static VegetationLive getInstance() {
+        return ourInstance;
+    }
+    private VegetationLive() {
+    }
+
     FactoryVegetation factoryVegetation = new FactoryVegetation();
+
+
 
     private ArrayList<Vegetation>[][] vegetationPull = new ArrayList[WIDTH][HEIGHT];
 
     public ArrayList<Vegetation>[][] getVegetationPull() {
         return vegetationPull;
+    }
+    public void setVegetationPull(ArrayList<Vegetation>[][] vegetationPull) {
+        this.vegetationPull = vegetationPull;
     }
 
     private Map<String, Integer>[][] countInCage = new HashMap[WIDTH][HEIGHT];
@@ -41,8 +51,6 @@ public class VegetationLive {
                 vegetationPull[i][j]=islandCage.getRandVegetationInCage();
             }
         }
-
-
     }
 
 
@@ -94,8 +102,7 @@ public class VegetationLive {
                     }
                 }
             }
-           System.out.println(str+": "+count);
-            this.countAll.put(str, count);
+            countAll.put(str, count);
         }
     }
     public void nextTurnVeg(){

@@ -2,6 +2,7 @@ package org.example.animals;
 
 import org.example.island.ChanceToEat;
 import org.example.island.Randomizer;
+import org.example.vegetation.Vegetation;
 
 public abstract class Animal {
     private double weight;
@@ -62,9 +63,16 @@ public abstract class Animal {
 
     public boolean eat(Animal animal){
         if(chanceToEat.chanceEat(this,animal)> Randomizer.getInstance().randomizer(100)+1){
-        return true;}
+            return true;}
         else return false;
     }
+    public boolean eat(Vegetation vegetation){
+        if(this instanceof Herbivore){
+            return true;}
+        else return false;
+    }
+
+
     public void move(){
 
     }
@@ -73,4 +81,5 @@ public abstract class Animal {
         return false;
     }
     public void death(){}
+
 }

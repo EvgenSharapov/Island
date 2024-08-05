@@ -23,6 +23,7 @@ public class FactoryAnimals {
             case "Sheep":return new Sheep(SHEEP_WEIGHT,false,START_IS_REPRODUCTION,START_AGE);
             case "WildBoar":return new WildBoar(WILD_BOAR_WEIGHT,false,START_IS_REPRODUCTION,START_AGE);
             case "Buffalo":return new Buffalo(BUFFALO_WEIGHT,false,START_IS_REPRODUCTION,START_AGE);
+            case "Bug":return new Bug(BUG_WEIGHT,false,START_IS_REPRODUCTION,START_AGE);
             default:return null;
         }
     }

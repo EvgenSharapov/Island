@@ -11,7 +11,6 @@ public class Randomizer {
         private Randomizer() {
         }
         public int randomizer(int i){
-            int value = ThreadLocalRandom.current().nextInt(0, i);
-            return value;
+            return ThreadLocalRandom.current().nextInt(0, i);
         }
 }

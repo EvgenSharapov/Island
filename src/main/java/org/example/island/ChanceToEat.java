@@ -30,6 +30,7 @@ public class ChanceToEat {
                     return 60;
                 case MOUSE_NAME:
                     return 90;
+                case BUG_NAME:return 40;
             }
         }
         if(eater.toString().equals(BOA_NAME)){

@@ -8,6 +8,7 @@ import org.example.island.factory.FactoryVegetation;
 import org.example.vegetation.Vegetation;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Random;
 
 public class IslandCage {
@@ -33,6 +34,7 @@ public class IslandCage {
                 }
             }
         }
+        Collections.shuffle(animals);
         return animals;
     }
     public ArrayList<Vegetation> getRandVegetationInCage() {
@@ -45,6 +47,7 @@ public class IslandCage {
                 }
             }
         }
+        Collections.shuffle(vegetation);
         return vegetation;
     }
 

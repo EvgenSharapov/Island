@@ -4,6 +4,7 @@ import org.example.animals.Animal;
 import org.example.island.characters.AnimalCharacters;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class IslandLife {
     IslandInit islandInit;
@@ -15,6 +16,7 @@ public class IslandLife {
 
         }
     }
+
 
 
 
