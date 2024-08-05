@@ -9,22 +9,13 @@ public abstract class Vegetation {
     FactoryVegetation factoryVegetation=new FactoryVegetation();
     private double weight;
     private boolean isReproduction;
-    private int x;
-    private int y;
 
-    public int getX() {
-        return x;
-    }
 
-    public int getY() {
-        return y;
-    }
 
-    public Vegetation(double weight, boolean isReproduction, int x, int y) {
+    public Vegetation(double weight, boolean isReproduction) {
         this.weight = weight;
         this.isReproduction=isReproduction;
-        this.x=x;
-        this.y=y;
+
     }
 
     public double getWeight() {

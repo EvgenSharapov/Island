@@ -2,7 +2,9 @@ package org.example.island;
 import org.example.animals.Animal;
 import org.example.animals.Direction;
 import org.example.island.characters.AnimalCharacters;
+import org.example.island.characters.VegetationCharacters;
 import org.example.island.factory.FactoryAnimals;
+import org.example.vegetation.Vegetation;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -13,6 +15,7 @@ import static org.example.island.characters.IslandCharacters.*;
 
 public class IslandInit {
     public ArrayList<Animal>[][] island = new ArrayList[WIDTH][HEIGHT];
+    VegetationLive vegetationLive=new VegetationLive();
     private int countAnimalInCage;
     private int countAllAnimals;
     private int countHungerDeath;
@@ -107,23 +110,25 @@ public class IslandInit {
             }
         }
     }
-    public void info(){
-        for(String str:AnimalCharacters.getInstance().animalsCage.keySet()){
-            countAllAnimals=0;
-        for (int i = 0; i < WIDTH; i++) {
-            for (int j = 0; j < HEIGHT; j++) {
-                ArrayList<Animal>animals=island[i][j];
-                    for(Animal animal:animals){
-                        if(animal.toString().equals(str)){
+    public void info() {
+        for (String str : AnimalCharacters.getInstance().animalsCage.keySet()) {
+            countAllAnimals = 0;
+            for (int i = 0; i < WIDTH; i++) {
+                for (int j = 0; j < HEIGHT; j++) {
+                    ArrayList<Animal> animals = island[i][j];
+                    for (Animal animal : animals) {
+                        if (animal.toString().equals(str)) {
                             countAllAnimals++;
                         }
                     }
                 }
             }
-            System.out.println(str+"-"+countAllAnimals);
+            System.out.println(str + "-" + countAllAnimals);
         }
         System.out.println("==========");
+
     }
+
     public void eatAll(){
         for (int i = 0; i < WIDTH; i++) {
             for (int j = 0; j < HEIGHT; j++) {
@@ -186,6 +191,7 @@ public class IslandInit {
                     if(anim.toString().equals("Buffalo")){anim.setWeight(anim.getWeight()+100);}
 
                 }
+
             }
         }
     }
