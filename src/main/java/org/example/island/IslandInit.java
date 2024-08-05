@@ -21,6 +21,8 @@ public class IslandInit {
     private int countHungerDeath;
     private int countAgeDeath;
     private int ageOfTheIsland;
+    private int animalsEaten;
+    private int vegetationEaten;
 
 
     public Map<String, Integer>[][] animalsMax = new HashMap[WIDTH][HEIGHT];
@@ -126,12 +128,37 @@ public class IslandInit {
                     }
                 }
             }
-            System.out.println(str + "-" + countAllAnimals);
+            String name=new String();
+            switch (str){
+                case "Wolf":name="\uD83D\uDC3A";break;
+                case "Bear":name="\uD83D\uDC3B";break;
+                case "Horse":name="\uD83D\uDC0E";break;
+                case  "Deer":name="\uD83E\uDD8C";break;
+                case  "WildBoar":name="\uD83D\uDC17";break;
+                case  "Sheep":name="\uD83D\uDC11";break;
+                case  "Goat":name="\uD83D\uDC10";break;
+                case  "Buffalo":name="\uD83D\uDC03";break;
+                case  "Boa":name="\uD83D\uDC0D";break;
+                case  "Fox":name="\uD83E\uDD8A";break;
+                case  "Eagle":name="\uD83E\uDD85";break;
+                case  "Rabbit":name="\uD83D\uDC07";break;
+                case  "Duck":name="\uD83E\uDD86";break;
+                case  "Mouse":name="\uD83D\uDC01";break;
+                case  "Bug":name="\uD83D\uDC1C";
+            }
+            System.out.println(name + "-" + countAllAnimals);
         }
         System.out.println("=Растения=");
         Map<String, Integer>vegCount=VegetationLive.getInstance().getCountAll();
         for(String str: vegCount.keySet()) {
-            System.out.println(str+": "+vegCount.get(str));
+            String name=new String();
+            switch (str){
+                case "Berries":name="\uD83C\uDF4F";break;
+                case "Herb":name="\uD83C\uDF3F";break;
+                case "Mushroom":name="\uD83C\uDF44";
+            }
+            System.out.println(name+": "+vegCount.get(str));
+
 
         }
 
@@ -140,6 +167,8 @@ public class IslandInit {
     }
 
     public void eatAll(){
+        animalsEaten=0;
+        vegetationEaten=0;
         ArrayList<Vegetation>[][]vegTemp=VegetationLive.getInstance().getVegetationPull();
         for (int i = 0; i < WIDTH; i++) {
             for (int j = 0; j < HEIGHT; j++) {
@@ -152,6 +181,7 @@ public class IslandInit {
                             animal[x].setWeight(animal[x].getWeight()+animal[x].getMaxEat());}
                             else{animal[x].setWeight(animal[x].getWeight()+anim.getWeight());}
                             island[i][j].remove(anim);
+                            animalsEaten++;
                             animal[x].setEat(true);break;
                         }
                         else {animal[x].setEat(true);break;}
@@ -163,6 +193,7 @@ public class IslandInit {
                             }
                             else{animal[x].setWeight(animal[x].getWeight()+vegetation.getWeight());}
                             vegTemp[i][j].remove(vegetation);
+                            vegetationEaten++;
                             animal[x].setEat(true);break;
                         }
                     }
@@ -219,13 +250,15 @@ public class IslandInit {
                 if((anim.getWeight()*100<AnimalCharacters.getInstance().animalsWeight.get(anim.toString())*DEATH_WEIGHT)){
                     island[i][j].remove(anim);
                     countHungerDeath++;}
-                   else if(anim.getAge()>DEATH_AGE){island[i][j].remove(anim);}
+                   else if(anim.getAge()>DEATH_AGE){island[i][j].remove(anim);countAgeDeath++;}
                 }
             }
         }
         System.out.println("Возраст острова: "+ageOfTheIsland);
         System.out.println("Умерло от голода: "+countHungerDeath);
         System.out.println("Умерло от старости: "+countAgeDeath);
+        System.out.println("Cъедено животных: "+animalsEaten);
+        System.out.println("Съедено растений: "+vegetationEaten);
     }
 
 }
