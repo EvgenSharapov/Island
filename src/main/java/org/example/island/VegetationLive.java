@@ -54,6 +54,7 @@ public class VegetationLive {
     }
 
 
+
     public void countInCageAll() {
         for (int i = 0; i < WIDTH; i++) {
             for (int j = 0; j < HEIGHT; j++) {
@@ -73,10 +74,6 @@ public class VegetationLive {
             }
         }
     }
-
-
-
-
     public void vegetationReproduction() {
         for (int i = 0; i < WIDTH; i++) {
             for (int j = 0; j < HEIGHT; j++) {

@@ -9,7 +9,7 @@ public class IslandCharacters {
     private IslandCharacters() {
     }
     public static final int CHANCE_REPRODUCTION=3;//40%
-    public static final int CHANCE_REPRODUCTION_VEGETATION=9;//90%
+    public static final int CHANCE_REPRODUCTION_VEGETATION=9;//100%
     public static final int MAX_START_AGE=9;
     public static final int DEATH_AGE=10;
     public static final int DEATH_WEIGHT=65;//65%

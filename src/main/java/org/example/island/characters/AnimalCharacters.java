@@ -16,7 +16,7 @@ public class AnimalCharacters {
     }
     private AnimalCharacters() {
     }
-   public Map<String, Integer> animalsCage = new HashMap<String, Integer>() {{
+   public Map<String, Integer> animalsCage = new HashMap<>() {{
         put(WOLF_NAME, WOLF_MAX_IN_CAGE);
         put(RABBIT_NAME, RABBIT_MAX_IN_CAGE);
         put(FOX_NAME,FOX_MAX_IN_CAGE);
@@ -33,7 +33,7 @@ public class AnimalCharacters {
         put(BUFFALO_NAME,BUFFALO_MAX_IN_CAGE);
         put(BUG_NAME,BUG_MAX_IN_CAGE);
     }};
-   public Map<String, Integer> animalsSpeed = new HashMap<String, Integer>() {{
+   public Map<String, Integer> animalsSpeed = new HashMap<>() {{
         put(WOLF_NAME, WOLF_MAX_SPEED);
         put(RABBIT_NAME, RABBIT_MAX_SPEED);
         put(FOX_NAME,FOX_MAX_SPEED);
@@ -50,7 +50,7 @@ public class AnimalCharacters {
         put(BUFFALO_NAME,BUFFALO_MAX_SPEED);
         put(BUG_NAME,BUG_MAX_SPEED);
     }};
-    public Map<String, Double> animalsWeight = new HashMap<String, Double>() {{
+    public Map<String, Double> animalsWeight = new HashMap<>() {{
         put(WOLF_NAME, WOLF_WEIGHT);
         put(RABBIT_NAME, RABBIT_WEIGHT);
         put(FOX_NAME,FOX_WEIGHT);

@@ -16,7 +16,7 @@ public class VegetationCharacters {
     }
 
 
-    public Map<String, Integer> vegetationInCage = new HashMap<String, Integer>() {{
+    public Map<String, Integer> vegetationInCage = new HashMap<>() {{
         put(HERB_NAME, HERB_MAX_IN_CAGE);
         put(BERRIES_NAME, BERRIES_MAX_IN_CAGE);
         put(MUSHROOM_NAME,MUSHROOM_MAX_IN_CAGE);

@@ -2,6 +2,7 @@ package org.example.animals;
 
 import org.example.island.ChanceToEat;
 import org.example.island.Randomizer;
+import org.example.island.characters.AnimalCharacters;
 import org.example.vegetation.Vegetation;
 
 public abstract class Animal {
@@ -10,6 +11,8 @@ public abstract class Animal {
     private boolean isEat;
     private boolean isReproduction;
     private int age;
+    private Direction direction;
+    private int speed;
     private ChanceToEat chanceToEat=new ChanceToEat();
     public Animal(double weight, boolean isEat, boolean isReproduction,int age,double maxEat) {
         this.weight = weight;
@@ -19,6 +22,7 @@ public abstract class Animal {
         this.maxEat=maxEat;
 
     }
+
 
     public double getMaxEat() {
         return maxEat;
@@ -66,6 +70,15 @@ public abstract class Animal {
             return true;}
         else return false;
     }
+
+    public Direction getDirection() {
+        return direction;
+    }
+
+    public int getSpeed() {
+        return speed;
+    }
+
     public boolean eat(Vegetation vegetation){
         if(this instanceof Herbivore){
             return true;}
@@ -74,7 +87,8 @@ public abstract class Animal {
 
 
     public void move(){
-
+      this.direction=Randomizer.getInstance().randomDirection();
+      this.speed=Randomizer.getInstance().randomizer(AnimalCharacters.getInstance().animalsSpeed.get(this.toString()));
     }
     public boolean reproduction(Animal animal){
         if(this.toString().equals(animal.toString())&&(this.isReproduction==false&&animal.isReproduction==false)){this.setReproduction(true);animal.setReproduction(true);return true;}

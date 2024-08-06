@@ -2,19 +2,23 @@ package org.example.island;
 import org.example.animals.Animal;
 import org.example.animals.Direction;
 import org.example.island.characters.AnimalCharacters;
-import org.example.island.characters.VegetationCharacters;
 import org.example.island.factory.FactoryAnimals;
 import org.example.vegetation.Vegetation;
 
+
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
+import static org.example.island.characters.AnimalCharacters.*;
 import static org.example.island.characters.IslandCharacters.*;
+import static org.example.island.characters.VegetationCharacters.*;
+
+public class IslandLive {
 
 
-public class IslandInit {
+
+
     public ArrayList<Animal>[][] island = new ArrayList[WIDTH][HEIGHT];
     private int countAnimalInCage;
     private int countAllAnimals;
@@ -38,7 +42,7 @@ public class IslandInit {
             }
         }
     }
-    public void live(){
+    private void live(){
         for (int i = 0; i < WIDTH; i++) {
             for (int j = 0; j < HEIGHT; j++) {
                 ArrayList<Animal>animals=island[i][j];
@@ -56,57 +60,46 @@ public class IslandInit {
             }
         }
     }
-    public Direction randomDirection(){
-        Direction[]directions=Direction.values();
-        int value = Randomizer.getInstance().randomizer(directions.length);
-            switch (value){
-                case 0:return Direction.UP;
-                case 1:return Direction.DOWN;
-                case 2:return Direction.RIGHT;
-                default:return Direction.LEFT;
-            }
-    }
-    public void moveAll(){
+    private void moveAll(){
         for (int i = 0; i < WIDTH; i++) {
             for (int j = 0; j < HEIGHT; j++) {
                 ArrayList<Animal> animals = island[i][j];
                 for (Animal animal : new ArrayList<>(animals)) {
-                    int speed =Randomizer.getInstance().randomizer(AnimalCharacters.getInstance().animalsSpeed.get(animal.toString()));
-                    Direction direction=randomDirection();
-                    while ((direction==Direction.UP&&j==0)||(direction==Direction.DOWN&&j==HEIGHT-1)||
-                            (direction==Direction.LEFT&&i==0)||(direction==Direction.RIGHT&&j==WIDTH-1)){
-                        direction= randomDirection();
+                    animal.move();
+                    while ((animal.getDirection()==Direction.UP&&j==0)||(animal.getDirection()==Direction.DOWN&&j==HEIGHT-1)||
+                            (animal.getDirection()==Direction.LEFT&&i==0)||(animal.getDirection()==Direction.RIGHT&&j==WIDTH-1)){
+                        animal.move();
                     }
-                    if (direction == Direction.UP) {
-                        if (j - speed < 0) {
+                    if (animal.getDirection() == Direction.UP) {
+                        if (j - animal.getSpeed() < 0) {
                             island[i][0].add(animal);
                             island[i][j].remove(animal);
                         } else {
-                            island[i][j - speed].add(animal);
+                            island[i][j - animal.getSpeed()].add(animal);
                             island[i][j].remove(animal);
                         }
-                    } else if (direction == Direction.DOWN) {
-                        if (j + speed > HEIGHT - 1) {
+                    } else if (animal.getDirection() == Direction.DOWN) {
+                        if (j + animal.getSpeed() > HEIGHT - 1) {
                             island[i][HEIGHT - 1].add(animal);
                             island[i][j].remove(animal);
                         } else {
-                            island[i][j + speed].add(animal);
+                            island[i][j + animal.getSpeed()].add(animal);
                             island[i][j].remove(animal);
                         }
-                    } else if (direction == Direction.LEFT) {
-                        if (i - speed < 0) {
+                    } else if (animal.getDirection() == Direction.LEFT) {
+                        if (i - animal.getSpeed() < 0) {
                             island[0][j].add(animal);
                             island[i][j].remove(animal);
                         } else {
-                            island[i - speed][j].add(animal);
+                            island[i - animal.getSpeed()][j].add(animal);
                             island[i][j].remove(animal);
                         }
-                    } else if (direction == Direction.RIGHT) {
-                        if (i + speed > WIDTH - 1) {
+                    } else if (animal.getDirection() == Direction.RIGHT) {
+                        if (i + animal.getSpeed() > WIDTH - 1) {
                             island[WIDTH - 1][j].add(animal);
                             island[i][j].remove(animal);
                         } else {
-                            island[i + speed][j].add(animal);
+                            island[i + animal.getSpeed()][j].add(animal);
                             island[i][j].remove(animal);
                         }
                     }
@@ -114,7 +107,7 @@ public class IslandInit {
             }
         }
     }
-    public void info() {
+    private void info() {
         System.out.println("=Животные=");
         for (String str : AnimalCharacters.getInstance().animalsCage.keySet()) {
             countAllAnimals = 0;
@@ -130,21 +123,21 @@ public class IslandInit {
             }
             String name=new String();
             switch (str){
-                case "Wolf":name="\uD83D\uDC3A";break;
-                case "Bear":name="\uD83D\uDC3B";break;
-                case "Horse":name="\uD83D\uDC0E";break;
-                case  "Deer":name="\uD83E\uDD8C";break;
-                case  "WildBoar":name="\uD83D\uDC17";break;
-                case  "Sheep":name="\uD83D\uDC11";break;
-                case  "Goat":name="\uD83D\uDC10";break;
-                case  "Buffalo":name="\uD83D\uDC03";break;
-                case  "Boa":name="\uD83D\uDC0D";break;
-                case  "Fox":name="\uD83E\uDD8A";break;
-                case  "Eagle":name="\uD83E\uDD85";break;
-                case  "Rabbit":name="\uD83D\uDC07";break;
-                case  "Duck":name="\uD83E\uDD86";break;
-                case  "Mouse":name="\uD83D\uDC01";break;
-                case  "Bug":name="\uD83D\uDC1C";
+                case WOLF_NAME:name="\uD83D\uDC3A";break;
+                case BEAR_NAME:name="\uD83D\uDC3B";break;
+                case HORSE_NAME:name="\uD83D\uDC0E";break;
+                case  DEER_NAME:name="\uD83E\uDD8C";break;
+                case  WILD_BOAR_NAME:name="\uD83D\uDC17";break;
+                case  SHEEP_NAME:name="\uD83D\uDC11";break;
+                case  GOAT_NAME:name="\uD83D\uDC10";break;
+                case  BUFFALO_NAME:name="\uD83D\uDC03";break;
+                case  BOA_NAME:name="\uD83D\uDC0D";break;
+                case  FOX_NAME:name="\uD83E\uDD8A";break;
+                case  EAGLE_NAME:name="\uD83E\uDD85";break;
+                case  RABBIT_NAME:name="\uD83D\uDC07";break;
+                case  DUCK_NAME:name="\uD83E\uDD86";break;
+                case  MOUSE_NAME:name="\uD83D\uDC01";break;
+                case  BUG_NAME:name="\uD83D\uDC1C";
             }
             System.out.println(name + "-" + countAllAnimals);
         }
@@ -153,9 +146,9 @@ public class IslandInit {
         for(String str: vegCount.keySet()) {
             String name=new String();
             switch (str){
-                case "Berries":name="\uD83C\uDF4F";break;
-                case "Herb":name="\uD83C\uDF3F";break;
-                case "Mushroom":name="\uD83C\uDF44";
+                case BERRIES_NAME:name="\uD83C\uDF4F";break;
+                case HERB_NAME:name="\uD83C\uDF3F";break;
+                case MUSHROOM_NAME:name="\uD83C\uDF44";
             }
             System.out.println(name+": "+vegCount.get(str));
 
@@ -166,7 +159,7 @@ public class IslandInit {
 
     }
 
-    public void eatAll(){
+    private void eatAll(){
         animalsEaten=0;
         vegetationEaten=0;
         ArrayList<Vegetation>[][]vegTemp=VegetationLive.getInstance().getVegetationPull();
@@ -202,7 +195,7 @@ public class IslandInit {
         }
         VegetationLive.getInstance().setVegetationPull(vegTemp);
     }
-    public void allReproduction(){
+    private void allReproduction(){
 
         for (int i = 0; i < WIDTH; i++) {
             for (int j = 0; j < HEIGHT; j++) {
@@ -224,7 +217,7 @@ public class IslandInit {
 
     }
 
-    public void nextTurn() {
+    private void nextTurn() {
         ageOfTheIsland++;
         for (int i = 0; i < WIDTH; i++) {
             for (int j = 0; j < HEIGHT; j++) {
@@ -239,7 +232,7 @@ public class IslandInit {
             }
         }
     }
-    public void allDeath() {
+    private void allDeath() {
         countHungerDeath=0;
         countAgeDeath=0;
 
@@ -259,6 +252,15 @@ public class IslandInit {
         System.out.println("Умерло от старости: "+countAgeDeath);
         System.out.println("Cъедено животных: "+animalsEaten);
         System.out.println("Съедено растений: "+vegetationEaten);
+    }
+    public void simulation(){
+        moveAll();
+        live();
+        eatAll();
+        allReproduction();
+        allDeath();
+        info();
+        nextTurn();
     }
 
 }
