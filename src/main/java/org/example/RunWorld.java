@@ -2,7 +2,8 @@ package org.example;
 
 import org.example.island.IslandLive;
 import org.example.island.VegetationLive;
-
+import org.springframework.scheduling.annotation.Async;
+import org.springframework.scheduling.annotation.Scheduled;
 public class RunWorld{
     public static void main(String[] args) throws InterruptedException {
 
@@ -12,9 +13,8 @@ public class RunWorld{
         VegetationLive.getInstance().initializeVegetation();
         VegetationLive.getInstance().countInCageAll();
         VegetationLive.getInstance().countAll();
-        while (true) {
+        while (!islandLive.isEndSimulation()) {
             try {
-
                 islandLive.simulation();
                 Thread.sleep(20);
                 VegetationLive.getInstance().countInCageAll();
@@ -27,5 +27,8 @@ public class RunWorld{
                 throw new RuntimeException(e);
             }
         }
-    }
+                System.out.println("==============");
+                System.out.println("Конец симуляции.");
+                System.out.println("==============");
+        }
 }

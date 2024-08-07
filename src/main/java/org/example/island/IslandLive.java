@@ -4,6 +4,8 @@ import org.example.animals.Direction;
 import org.example.island.characters.AnimalCharacters;
 import org.example.island.factory.FactoryAnimals;
 import org.example.vegetation.Vegetation;
+import org.springframework.scheduling.annotation.EnableScheduling;
+import org.springframework.scheduling.annotation.Scheduled;
 
 
 import java.util.ArrayList;
@@ -13,6 +15,7 @@ import java.util.Map;
 import static org.example.island.characters.AnimalCharacters.*;
 import static org.example.island.characters.IslandCharacters.*;
 import static org.example.island.characters.VegetationCharacters.*;
+@EnableScheduling
 
 public class IslandLive {
 
@@ -27,6 +30,7 @@ public class IslandLive {
     private int ageOfTheIsland;
     private int animalsEaten;
     private int vegetationEaten;
+    private boolean isEndSimulation=false;
 
 
     public Map<String, Integer>[][] animalsMax = new HashMap[WIDTH][HEIGHT];
@@ -38,10 +42,11 @@ public class IslandLive {
         for (int i = 0; i < WIDTH; i++) {
             for (int j = 0; j < HEIGHT; j++) {
                 IslandCage islandCage=new IslandCage(i,j);
-                island[i][j]=islandCage.getRandAnimalsInCage();
+                island[i][j]=islandCage.getRandAnimalsInCageStart();
             }
         }
     }
+    @Scheduled(fixedDelay = 10)
     private void live(){
         for (int i = 0; i < WIDTH; i++) {
             for (int j = 0; j < HEIGHT; j++) {
@@ -107,6 +112,7 @@ public class IslandLive {
             }
         }
     }
+    @Scheduled(fixedDelay = 10)
     private void info() {
         System.out.println("=Животные=");
         for (String str : AnimalCharacters.getInstance().animalsCage.keySet()) {
@@ -158,7 +164,7 @@ public class IslandLive {
         System.out.println("==========");
 
     }
-
+    @Scheduled(fixedDelay = 10)
     private void eatAll(){
         animalsEaten=0;
         vegetationEaten=0;
@@ -195,6 +201,7 @@ public class IslandLive {
         }
         VegetationLive.getInstance().setVegetationPull(vegTemp);
     }
+    @Scheduled(fixedDelay = 10)
     private void allReproduction(){
 
         for (int i = 0; i < WIDTH; i++) {
@@ -217,8 +224,13 @@ public class IslandLive {
 
     }
 
+    public boolean isEndSimulation() {
+        return isEndSimulation;
+    }
+
     private void nextTurn() {
         ageOfTheIsland++;
+        if(ageOfTheIsland>NUMBER_TURN_SIMULATION_ISLAND){isEndSimulation=true;}
         for (int i = 0; i < WIDTH; i++) {
             for (int j = 0; j < HEIGHT; j++) {
                 ArrayList<Animal> animals = island[i][j];
@@ -232,6 +244,7 @@ public class IslandLive {
             }
         }
     }
+    @Scheduled(fixedDelay = 10)
     private void allDeath() {
         countHungerDeath=0;
         countAgeDeath=0;

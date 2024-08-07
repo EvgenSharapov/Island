@@ -22,8 +22,6 @@ public abstract class Animal {
         this.maxEat=maxEat;
 
     }
-
-
     public double getMaxEat() {
         return maxEat;
     }
@@ -36,9 +34,6 @@ public abstract class Animal {
         this.age = age;
     }
 
-
-
-
     public boolean isReproduction() {
         return isReproduction;
     }
@@ -46,8 +41,6 @@ public abstract class Animal {
     public void setReproduction(boolean reproduction) {
         isReproduction = reproduction;
     }
-
-
 
     public boolean isEat() {
         return isEat;
@@ -84,8 +77,6 @@ public abstract class Animal {
             return true;}
         else return false;
     }
-
-
     public void move(){
       this.direction=Randomizer.getInstance().randomDirection();
       this.speed=Randomizer.getInstance().randomizer(AnimalCharacters.getInstance().animalsSpeed.get(this.toString()));
@@ -94,6 +85,4 @@ public abstract class Animal {
         if(this.toString().equals(animal.toString())&&(this.isReproduction==false&&animal.isReproduction==false)){this.setReproduction(true);animal.setReproduction(true);return true;}
         return false;
     }
-    public void death(){}
-
 }

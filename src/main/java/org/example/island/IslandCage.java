@@ -10,6 +10,7 @@ import org.example.vegetation.Vegetation;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Random;
+import static org.example.island.characters.IslandCharacters.*;
 
 public class IslandCage {
     FactoryAnimals factory=new FactoryAnimals();
@@ -24,23 +25,28 @@ public class IslandCage {
     }
 
 
-    public ArrayList<Animal> getRandAnimalsInCage() {
+    public ArrayList<Animal> getRandAnimalsInCageStart() {
         ArrayList<Animal>animals=new ArrayList<>();
         for (String str:AnimalCharacters.getInstance().animalsCage.keySet()){
-            int random= Randomizer.getInstance().randomizer(AnimalCharacters.getInstance().animalsCage.get(str));
+            int random= Randomizer.getInstance().randomizer((AnimalCharacters.getInstance().animalsCage.get(str)*START_POPULATION_ISLAND)/100);
             if(random!=0){
                 for(int i=1;i<=random;i++){
                     animals.add(factory.create(str));
                 }
             }
+            else break;
         }
         Collections.shuffle(animals);
         return animals;
     }
-    public ArrayList<Vegetation> getRandVegetationInCage() {
+
+
+
+
+    public ArrayList<Vegetation> getRandVegetationInCageStart() {
         ArrayList<Vegetation>vegetation=new ArrayList<>();
         for (String str: VegetationCharacters.getInstance().vegetationInCage.keySet()){
-            int random= Randomizer.getInstance().randomizer(VegetationCharacters.getInstance().vegetationInCage.get(str));
+            int random= Randomizer.getInstance().randomizer((VegetationCharacters.getInstance().vegetationInCage.get(str)*START_POPULATION_ISLAND)/100);
             if(random!=0){
                 for(int i=1;i<=random;i++){
                     vegetation.add(factoryVegetation.create(str));

@@ -9,20 +9,14 @@ public abstract class Vegetation {
     FactoryVegetation factoryVegetation=new FactoryVegetation();
     private double weight;
     private boolean isReproduction;
-
-
-
     public Vegetation(double weight, boolean isReproduction) {
         this.weight = weight;
         this.isReproduction=isReproduction;
 
     }
-
     public double getWeight() {
         return weight;
     }
-
-
     public boolean isReproduction() {
         return isReproduction;
     }

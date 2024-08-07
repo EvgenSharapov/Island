@@ -5,6 +5,7 @@ import org.example.island.characters.AnimalCharacters;
 import org.example.island.characters.VegetationCharacters;
 import org.example.island.factory.FactoryVegetation;
 import org.example.vegetation.Vegetation;
+import org.springframework.scheduling.annotation.Scheduled;
 
 import java.util.*;
 
@@ -48,12 +49,12 @@ public class VegetationLive {
         for (int i = 0; i < WIDTH; i++) {
             for (int j = 0; j < HEIGHT; j++) {
                 IslandCage islandCage=new IslandCage(i,j);
-                vegetationPull[i][j]=islandCage.getRandVegetationInCage();
+                vegetationPull[i][j]=islandCage.getRandVegetationInCageStart();
             }
         }
     }
 
-
+@Scheduled(fixedDelay = 10)
 
     public void countInCageAll() {
         for (int i = 0; i < WIDTH; i++) {
@@ -74,6 +75,7 @@ public class VegetationLive {
             }
         }
     }
+    @Scheduled(fixedDelay = 10)
     public void vegetationReproduction() {
         for (int i = 0; i < WIDTH; i++) {
             for (int j = 0; j < HEIGHT; j++) {
@@ -86,7 +88,7 @@ public class VegetationLive {
                     }
                 }
             }
-
+    @Scheduled(fixedDelay = 10)
     public void countAll() {
         for (String str : VegetationCharacters.getInstance().vegetationInCage.keySet()) {
             int count = 0;
@@ -102,6 +104,7 @@ public class VegetationLive {
             countAll.put(str, count);
         }
     }
+    @Scheduled(fixedDelay = 10)
     public void nextTurnVeg(){
         for (int i = 0; i < WIDTH; i++) {
             for (int j = 0; j < HEIGHT; j++) {
