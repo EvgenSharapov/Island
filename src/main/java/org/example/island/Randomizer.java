@@ -13,7 +13,7 @@ public class Randomizer {
         private Randomizer() {
         }
         public int randomizer(int i){
-            if (ThreadLocalRandom.current().nextInt(0, i)<1){return 1;}
+           if (ThreadLocalRandom.current().nextInt(0, i)<1){return 1;}
             return ThreadLocalRandom.current().nextInt(0, i);
         }
     public Direction randomDirection(){

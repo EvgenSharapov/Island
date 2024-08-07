@@ -19,6 +19,6 @@ public class IslandCharacters {
     public static final int WIDTH = 10;
     public static final int HEIGHT = 10;
     public static final int NUMBER_TURN_SIMULATION_ISLAND=30;
-    public static final int START_POPULATION_ISLAND=20;//20%
+    public static final int START_POPULATION_ISLAND=5;//20%
 
 }

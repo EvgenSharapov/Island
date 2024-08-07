@@ -5,11 +5,13 @@ import org.example.island.characters.AnimalCharacters;
 import org.example.island.characters.VegetationCharacters;
 import org.example.island.factory.FactoryVegetation;
 import org.example.vegetation.Vegetation;
+import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.annotation.Scheduled;
 
 import java.util.*;
 
 import static org.example.island.characters.IslandCharacters.*;
+@EnableScheduling
 
 
 public class VegetationLive {
