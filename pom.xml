@@ -19,11 +19,10 @@
             <artifactId>shedlock-spring</artifactId>
             <version>4.27.0</version>
         </dependency>
-
         <dependency>
-            <groupId>net.javacrumbs.shedlock</groupId>
-            <artifactId>shedlock-provider-jdbc-template</artifactId>
-            <version>4.27.0</version>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-context</artifactId>
+            <version>5.3.19</version>
         </dependency>
     </dependencies>
 

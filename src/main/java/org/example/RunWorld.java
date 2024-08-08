@@ -2,10 +2,8 @@ package org.example;
 
 import org.example.island.IslandLive;
 import org.example.island.VegetationLive;
-import org.springframework.scheduling.annotation.Async;
-import org.springframework.scheduling.annotation.Scheduled;
 public class RunWorld{
-    public static void main(String[] args) throws InterruptedException {
+    public static void main(String[] args){
 
 
         IslandLive islandLive = new IslandLive();

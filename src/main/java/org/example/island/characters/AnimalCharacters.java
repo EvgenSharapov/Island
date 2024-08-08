@@ -117,7 +117,7 @@ public class AnimalCharacters {
     public static final double DEER_MAX_EAT=50;
     public static final String MOUSE_NAME="Mouse";
     public static final double MOUSE_WEIGHT=0.05;
-    public static final int MOUSE_MAX_IN_CAGE=500;
+    public static final int MOUSE_MAX_IN_CAGE=300;
     public static final int MOUSE_MAX_SPEED=1;
     public static final double MOUSE_MAX_EAT=0.01;
     public static final String GOAT_NAME="Goat";

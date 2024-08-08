@@ -4,8 +4,6 @@ import org.example.animals.Direction;
 import org.example.island.characters.AnimalCharacters;
 import org.example.island.factory.FactoryAnimals;
 import org.example.vegetation.Vegetation;
-import org.springframework.scheduling.annotation.EnableScheduling;
-import org.springframework.scheduling.annotation.Scheduled;
 
 
 import java.util.ArrayList;
@@ -15,7 +13,6 @@ import java.util.Map;
 import static org.example.island.characters.AnimalCharacters.*;
 import static org.example.island.characters.IslandCharacters.*;
 import static org.example.island.characters.VegetationCharacters.*;
-@EnableScheduling
 
 public class IslandLive {
 
@@ -35,8 +32,9 @@ public class IslandLive {
 
     public Map<String, Integer>[][] animalsMax = new HashMap[WIDTH][HEIGHT];
     FactoryAnimals factory=new FactoryAnimals();
-
-
+    public boolean isEndSimulation() {
+        return isEndSimulation;
+    }
 
     public void initialize() {
         for (int i = 0; i < WIDTH; i++) {
@@ -46,8 +44,8 @@ public class IslandLive {
             }
         }
     }
-    @Scheduled(fixedDelay = 10)
-    private void live(){
+
+    private void countingAnimal(){
         for (int i = 0; i < WIDTH; i++) {
             for (int j = 0; j < HEIGHT; j++) {
                 ArrayList<Animal>animals=island[i][j];
@@ -76,34 +74,34 @@ public class IslandLive {
                         animal.move();
                     }
                     if (animal.getDirection() == Direction.UP) {
-                        if (j - animal.getSpeed() < 0) {
+                        if ((j - animal.getSpeed() < 0)&&(animalsMax[i][0].get(animal.toString())<AnimalCharacters.getInstance().animalsCage.get(animal.toString()))) {
                             island[i][0].add(animal);
                             island[i][j].remove(animal);
-                        } else {
+                        } else if((j - animal.getSpeed() >= 0)&&   (animalsMax[i][j - animal.getSpeed()].get(animal.toString())<AnimalCharacters.getInstance().animalsCage.get(animal.toString()))){
                             island[i][j - animal.getSpeed()].add(animal);
                             island[i][j].remove(animal);
                         }
                     } else if (animal.getDirection() == Direction.DOWN) {
-                        if (j + animal.getSpeed() > HEIGHT - 1) {
+                        if ((j + animal.getSpeed() > HEIGHT - 1)&&(animalsMax[i][HEIGHT - 1].get(animal.toString())<AnimalCharacters.getInstance().animalsCage.get(animal.toString()))) {
                             island[i][HEIGHT - 1].add(animal);
                             island[i][j].remove(animal);
-                        } else {
+                        } else if((j + animal.getSpeed() <= HEIGHT - 1)&&     (animalsMax[i][j + animal.getSpeed()].get(animal.toString())<AnimalCharacters.getInstance().animalsCage.get(animal.toString()))){
                             island[i][j + animal.getSpeed()].add(animal);
                             island[i][j].remove(animal);
                         }
                     } else if (animal.getDirection() == Direction.LEFT) {
-                        if (i - animal.getSpeed() < 0) {
+                        if ((i - animal.getSpeed() < 0)&&(animalsMax[0][j].get(animal.toString())<AnimalCharacters.getInstance().animalsCage.get(animal.toString()))) {
                             island[0][j].add(animal);
                             island[i][j].remove(animal);
-                        } else {
+                        } else if((i - animal.getSpeed() >= 0)&&   animalsMax[i - animal.getSpeed()][j].get(animal.toString())<AnimalCharacters.getInstance().animalsCage.get(animal.toString())){
                             island[i - animal.getSpeed()][j].add(animal);
                             island[i][j].remove(animal);
                         }
                     } else if (animal.getDirection() == Direction.RIGHT) {
-                        if (i + animal.getSpeed() > WIDTH - 1) {
+                        if ((i + animal.getSpeed() > WIDTH-1)&&(animalsMax[WIDTH - 1][j].get(animal.toString())<AnimalCharacters.getInstance().animalsCage.get(animal.toString()))) {
                             island[WIDTH - 1][j].add(animal);
                             island[i][j].remove(animal);
-                        } else {
+                        } else if((i + animal.getSpeed() <= WIDTH-1)&&animalsMax[i + animal.getSpeed()][j].get(animal.toString())<AnimalCharacters.getInstance().animalsCage.get(animal.toString())){
                             island[i + animal.getSpeed()][j].add(animal);
                             island[i][j].remove(animal);
                         }
@@ -112,7 +110,6 @@ public class IslandLive {
             }
         }
     }
-    @Scheduled(fixedDelay = 10)
     private void info() {
         System.out.println("=Животные=");
         for (String str : AnimalCharacters.getInstance().animalsCage.keySet()) {
@@ -164,7 +161,6 @@ public class IslandLive {
         System.out.println("==========");
 
     }
-    @Scheduled(fixedDelay = 10)
     private void eatAll(){
         animalsEaten=0;
         vegetationEaten=0;
@@ -201,7 +197,6 @@ public class IslandLive {
         }
         VegetationLive.getInstance().setVegetationPull(vegTemp);
     }
-    @Scheduled(fixedDelay = 10)
     private void allReproduction(){
 
         for (int i = 0; i < WIDTH; i++) {
@@ -224,9 +219,7 @@ public class IslandLive {
 
     }
 
-    public boolean isEndSimulation() {
-        return isEndSimulation;
-    }
+
 
     private void nextTurn() {
         ageOfTheIsland++;
@@ -244,7 +237,6 @@ public class IslandLive {
             }
         }
     }
-    @Scheduled(fixedDelay = 10)
     private void allDeath() {
         countHungerDeath=0;
         countAgeDeath=0;
@@ -267,8 +259,8 @@ public class IslandLive {
         System.out.println("Съедено растений: "+vegetationEaten);
     }
     public void simulation(){
+        countingAnimal();
         moveAll();
-        live();
         eatAll();
         allReproduction();
         allDeath();
