@@ -2,8 +2,14 @@ package org.example;
 
 import org.example.island.IslandLive;
 import org.example.island.VegetationLive;
+import org.example.service.ScheduledTaskService;
+
+import org.springframework.scheduling.annotation.EnableScheduling;
+
+
+
 public class RunWorld{
-    public static void main(String[] args){
+    public static void main(String[] args) throws InterruptedException {
 
 
         IslandLive islandLive = new IslandLive();
@@ -28,5 +34,7 @@ public class RunWorld{
                 System.out.println("==============");
                 System.out.println("Конец симуляции.");
                 System.out.println("==============");
-        }
+}
+
+
 }

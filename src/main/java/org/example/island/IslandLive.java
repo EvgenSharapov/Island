@@ -4,6 +4,7 @@ import org.example.animals.Direction;
 import org.example.island.characters.AnimalCharacters;
 import org.example.island.factory.FactoryAnimals;
 import org.example.vegetation.Vegetation;
+import org.springframework.scheduling.annotation.Scheduled;
 
 
 import java.util.ArrayList;
@@ -209,7 +210,7 @@ public class IslandLive {
                     for (Animal anim : new ArrayList<>(animals)) {
                         if(animalsMax[i][j].get(anim.toString())>=AnimalCharacters.getInstance().animalsCage.get(anim.toString())){continue;}
                         if((animal[x].getAge()>3)&&animal[x].reproduction(anim)){
-                            if(Randomizer.getInstance().randomizer(9)<CHANCE_REPRODUCTION){
+                            if(Randomizer.getInstance().randomizer(10)<CHANCE_REPRODUCTION){
                             island[i][j].add(factory.create(anim.toString()));}
                         }
                     }
@@ -258,6 +259,7 @@ public class IslandLive {
         System.out.println("Cъедено животных: "+animalsEaten);
         System.out.println("Съедено растений: "+vegetationEaten);
     }
+    @Scheduled
     public void simulation(){
         countingAnimal();
         moveAll();

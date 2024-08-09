@@ -4,9 +4,6 @@ import org.example.animals.Animal;
 import static org.example.island.characters.AnimalCharacters.*;
 
 public class ChanceToEat {
-    private Animal eater;
-    private Animal eat;
-
 
     public int chanceEat(Animal eater,Animal eat){
         if(eater.toString().equals(WOLF_NAME)) {
