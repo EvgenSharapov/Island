@@ -13,16 +13,15 @@ public class Randomizer {
         private Randomizer() {
         }
         public int randomizer(int i){
-           if (ThreadLocalRandom.current().nextInt(0, i)<1){return 1;}
             return ThreadLocalRandom.current().nextInt(0, i);
         }
     public Direction randomDirection(){
         Direction[]directions=Direction.values();
         int value = Randomizer.getInstance().randomizer(directions.length+1);
         switch (value){
-            case 1:return Direction.UP;
-            case 2:return Direction.DOWN;
-            case 3:return Direction.RIGHT;
+            case 0:return Direction.UP;
+            case 1:return Direction.DOWN;
+            case 2:return Direction.RIGHT;
             default:return Direction.LEFT;
         }
     }
