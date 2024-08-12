@@ -4,7 +4,7 @@ import org.example.animals.Direction;
 import org.example.island.characters.AnimalCharacters;
 import org.example.island.factory.FactoryAnimals;
 import org.example.vegetation.Vegetation;
-import org.springframework.scheduling.annotation.Scheduled;
+
 
 
 import java.util.ArrayList;
@@ -30,9 +30,7 @@ public class IslandLive {
     private int vegetationEaten;
     private boolean isEndSimulation=false;
 
-
     public Map<String, Integer>[][] animalsMax = new HashMap[WIDTH][HEIGHT];
-    FactoryAnimals factory=new FactoryAnimals();
     public boolean isEndSimulation() {
         return isEndSimulation;
     }
@@ -40,7 +38,7 @@ public class IslandLive {
     public void initialize() {
         for (int i = 0; i < WIDTH; i++) {
             for (int j = 0; j < HEIGHT; j++) {
-                IslandCage islandCage=new IslandCage(i,j);
+                IslandCage islandCage=new IslandCage();
                 island[i][j]=islandCage.getRandAnimalsInCageStart();
             }
         }
@@ -125,7 +123,7 @@ public class IslandLive {
                     }
                 }
             }
-            String name=new String();
+            String name="";
             switch (str){
                 case WOLF_NAME:name="\uD83D\uDC3A";break;
                 case BEAR_NAME:name="\uD83D\uDC3B";break;
@@ -148,7 +146,7 @@ public class IslandLive {
         System.out.println("=Растения=");
         Map<String, Integer>vegCount=VegetationLive.getInstance().getCountAll();
         for(String str: vegCount.keySet()) {
-            String name=new String();
+            String name="";
             switch (str){
                 case BERRIES_NAME:name="\uD83C\uDF4F";break;
                 case HERB_NAME:name="\uD83C\uDF3F";break;
@@ -211,7 +209,7 @@ public class IslandLive {
                         if(animalsMax[i][j].get(anim.toString())>=AnimalCharacters.getInstance().animalsCage.get(anim.toString())){continue;}
                         if((animal[x].getAge()>3)&&animal[x].reproduction(anim)){
                             if(Randomizer.getInstance().randomizer(10)<CHANCE_REPRODUCTION){
-                            island[i][j].add(factory.create(anim.toString()));}
+                            island[i][j].add(FactoryAnimals.create(anim.toString()));}
                         }
                     }
                 }
@@ -259,8 +257,7 @@ public class IslandLive {
         System.out.println("Cъедено животных: "+animalsEaten);
         System.out.println("Съедено растений: "+vegetationEaten);
     }
-    @Scheduled
-    public void simulation(){
+    public  void simulation(){
         countingAnimal();
         moveAll();
         eatAll();

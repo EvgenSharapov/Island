@@ -8,7 +8,7 @@ public class IslandCharacters {
     }
     private IslandCharacters() {
     }
-    public static final int CHANCE_REPRODUCTION=3;//40%
+    public static final int CHANCE_REPRODUCTION=4;//40%
     public static final int CHANCE_REPRODUCTION_VEGETATION=5;//40%
     public static final int DEATH_AGE=10;
     public static final int DEATH_WEIGHT=65;//65%

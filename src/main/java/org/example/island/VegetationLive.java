@@ -1,19 +1,12 @@
 package org.example.island;
-
-import org.example.animals.Animal;
-import org.example.island.characters.AnimalCharacters;
 import org.example.island.characters.VegetationCharacters;
 import org.example.island.factory.FactoryVegetation;
 import org.example.vegetation.Vegetation;
-import org.springframework.scheduling.annotation.EnableScheduling;
-import org.springframework.scheduling.annotation.Scheduled;
+
 
 import java.util.*;
 
 import static org.example.island.characters.IslandCharacters.*;
-@EnableScheduling
-
-
 public class VegetationLive {
     private static VegetationLive ourInstance = new VegetationLive();
 
@@ -22,11 +15,6 @@ public class VegetationLive {
     }
     private VegetationLive() {
     }
-
-    FactoryVegetation factoryVegetation = new FactoryVegetation();
-
-
-
     private ArrayList<Vegetation>[][] vegetationPull = new ArrayList[WIDTH][HEIGHT];
 
     public ArrayList<Vegetation>[][] getVegetationPull() {
@@ -50,13 +38,12 @@ public class VegetationLive {
     public void initializeVegetation() {
         for (int i = 0; i < WIDTH; i++) {
             for (int j = 0; j < HEIGHT; j++) {
-                IslandCage islandCage=new IslandCage(i,j);
+                IslandCage islandCage=new IslandCage();
                 vegetationPull[i][j]=islandCage.getRandVegetationInCageStart();
             }
         }
     }
 
-@Scheduled(fixedDelay = 10)
 
     public void countInCageAll() {
         for (int i = 0; i < WIDTH; i++) {
@@ -77,7 +64,6 @@ public class VegetationLive {
             }
         }
     }
-    @Scheduled(fixedDelay = 10)
     public void vegetationReproduction() {
         for (int i = 0; i < WIDTH; i++) {
             for (int j = 0; j < HEIGHT; j++) {
@@ -85,19 +71,18 @@ public class VegetationLive {
                     for (Vegetation veg : new ArrayList<>(vegetation)) {
                        if(countInCage[i][j].get(veg.toString())>=VegetationCharacters.getInstance().vegetationInCage.get(veg.toString())){continue;}
                         if(veg.reproduction()){
-                                vegetationPull[i][j].add(factoryVegetation.create(veg.toString()));}
+                                vegetationPull[i][j].add(FactoryVegetation.create(veg.toString()));}
                         }
                     }
                 }
             }
-    @Scheduled(fixedDelay = 10)
     public void countAll() {
         for (String str : VegetationCharacters.getInstance().vegetationInCage.keySet()) {
             int count = 0;
             for (int i = 0; i < WIDTH; i++) {
                 for (int j = 0; j < HEIGHT; j++) {
                     for (String veg : countInCage[i][j].keySet()) {
-                        if (veg.toString().equals(str)) {
+                        if (veg.equals(str)) {
                             count+=countInCage[i][j].get(veg);
                         }
                     }
@@ -106,7 +91,6 @@ public class VegetationLive {
             countAll.put(str, count);
         }
     }
-    @Scheduled(fixedDelay = 10)
     public void nextTurnVeg(){
         for (int i = 0; i < WIDTH; i++) {
             for (int j = 0; j < HEIGHT; j++) {

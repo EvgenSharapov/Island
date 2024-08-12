@@ -13,7 +13,6 @@ public abstract class Animal {
     private int age;
     private Direction direction;
     private int speed;
-    private ChanceToEat chanceToEat=new ChanceToEat();
     public Animal(double weight, boolean isEat, boolean isReproduction,int age,double maxEat) {
         this.weight = weight;
         this.isEat=isEat;
@@ -59,7 +58,7 @@ public abstract class Animal {
     }
 
     public boolean eat(Animal animal){
-        if(chanceToEat.chanceEat(this,animal)> Randomizer.getInstance().randomizer(100)+1){
+        if(ChanceToEat.chanceEat(this,animal)> Randomizer.getInstance().randomizer(100)+1){
             return true;}
         else return false;
     }
@@ -82,7 +81,7 @@ public abstract class Animal {
       this.speed=Randomizer.getInstance().randomizer(AnimalCharacters.getInstance().animalsSpeed.get(this.toString()));
     }
     public boolean reproduction(Animal animal){
-        if(this.toString().equals(animal.toString())&&(this.isReproduction==false&&animal.isReproduction==false)){this.setReproduction(true);animal.setReproduction(true);return true;}
+        if(this.toString().equals(animal.toString())&&(!this.isReproduction&&!animal.isReproduction)){this.setReproduction(true);animal.setReproduction(true);return true;}
         return false;
     }
 }

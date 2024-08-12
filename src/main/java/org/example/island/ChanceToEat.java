@@ -3,9 +3,9 @@ package org.example.island;
 import org.example.animals.Animal;
 import static org.example.island.characters.AnimalCharacters.*;
 
-public class ChanceToEat {
+public  class ChanceToEat {
 
-    public int chanceEat(Animal eater,Animal eat){
+    public static int chanceEat(Animal eater,Animal eat){
         if(eater.toString().equals(WOLF_NAME)) {
             switch (eat.toString()){
                 case RABBIT_NAME:

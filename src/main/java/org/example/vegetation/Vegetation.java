@@ -6,7 +6,6 @@ import org.example.island.factory.FactoryVegetation;
 import static org.example.island.characters.IslandCharacters.*;
 
 public abstract class Vegetation {
-    FactoryVegetation factoryVegetation=new FactoryVegetation();
     private double weight;
     private boolean isReproduction;
     public Vegetation(double weight, boolean isReproduction) {
@@ -24,7 +23,7 @@ public abstract class Vegetation {
         isReproduction = reproduction;
     }
     public boolean reproduction(){
-       if(CHANCE_REPRODUCTION_VEGETATION> Randomizer.getInstance().randomizer(9)&&this.isReproduction==false)
+       if(CHANCE_REPRODUCTION_VEGETATION> Randomizer.getInstance().randomizer(9)&&!this.isReproduction)
         {this.setReproduction(true);return true;
         }
        else this.setReproduction(true);return false;

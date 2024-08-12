@@ -2,14 +2,13 @@ package org.example.island.factory;
 
 import org.example.animals.Animal;
 import org.example.animals.poolAnimals.*;
-import org.example.island.Randomizer;
 
 import static org.example.island.characters.AnimalCharacters.*;
 import static org.example.island.characters.IslandCharacters.*;
 
 
 public class FactoryAnimals {
-    public Animal create(String type){
+    public static Animal create(String type){
         switch (type){
             case "Wolf":return new Wolf(WOLF_WEIGHT,false,START_IS_REPRODUCTION,0);
             case "Rabbit":return new Rabbit(RABBIT_WEIGHT,false,START_IS_REPRODUCTION,0);
