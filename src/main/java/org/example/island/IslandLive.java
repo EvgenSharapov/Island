@@ -229,7 +229,8 @@ public class IslandLive {
             for (int j = 0; j < HEIGHT; j++) {
                 ArrayList<Animal> animals = island[i][j];
                 for (Animal anim : new ArrayList<>(animals)) {
-                    anim.setWeight(anim.getWeight()*WEIGHT_LOSS_PER_TURN);
+                    if(!anim.toString().equals("Bug")){
+                    anim.setWeight(anim.getWeight()*WEIGHT_LOSS_PER_TURN);}
                     anim.setEat(false);
                     anim.setReproduction(false);
                     anim.setAge(anim.getAge()+1);

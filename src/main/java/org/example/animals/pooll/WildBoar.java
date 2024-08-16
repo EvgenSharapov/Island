@@ -1,20 +1,19 @@
-package org.example.animals.poolAnimals;
+package org.example.animals.pooll;
 
 import org.example.animals.Animal;
 import org.example.animals.Herbivore;
 import org.example.island.Randomizer;
 import org.example.island.characters.AnimalCharacters;
 
-public class Mouse extends Herbivore {
-    public Mouse(double weight,boolean isEat,boolean isReproduction,int age) {
-        super(weight,isEat,isReproduction,age, AnimalCharacters.getInstance().MOUSE_MAX_EAT);
+public class WildBoar extends Herbivore {
+    public WildBoar(double weight,boolean isEat,boolean isReproduction,int age) {
+        super(weight,isEat,isReproduction,age, AnimalCharacters.getInstance().WILD_BOAR_MAX_EAT);
     }
 
     @Override
     public String toString() {
-        return "Mouse";
+        return "WildBoar";
     }
-
     @Override
     public boolean eat(Animal animal) {
         if(animal instanceof Bug){
@@ -22,7 +21,6 @@ public class Mouse extends Herbivore {
                 return true;
             }
         }
-      return  super.eat(animal);
+        return  super.eat(animal);
     }
 }
-

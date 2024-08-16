@@ -4,54 +4,50 @@ import org.example.island.IslandLive;
 import org.example.island.VegetationLive;
 
 
-public class RunWorld implements Runnable {
-    String name;
-    Thread thread;
+public class RunWorld{
+
     static boolean isRunning=true;
 
-    public RunWorld(String name) {
-        this.name = name;
-        thread = new Thread(this, name);
-        System.out.println("Новый поток :" + thread);
-    }
-
-    public static void main(String[] args) throws InterruptedException {
-        RunWorld runWorld = new RunWorld("runWorld");
-        runWorld.thread.start();
-        System.out.println("Поток r1 работает:" + runWorld.thread.isAlive());
-        while (isRunning){
-            Thread.sleep(700);
-            VegetationLive.getInstance().simulation();
-        }
-
-
-    }
-
-
-    @Override
-    public void run() {
-        IslandLive islandLive = new IslandLive();
-        islandLive.initialize();
-        VegetationLive.getInstance().initializeVegetation();
-        VegetationLive.getInstance().countInCageAll();
-        VegetationLive.getInstance().countAll();
-        try {
-            while (!islandLive.isEndSimulation()) {
+    public static void main(String[] args) {
+        Thread thread1=new Thread(() -> {
+            IslandLive islandLive = new IslandLive();
+            islandLive.initialize();
+            VegetationLive.getInstance().initializeVegetation();
+            VegetationLive.getInstance().countInCageAll();
+            VegetationLive.getInstance().countAll();
+            try {
+                while (!islandLive.isEndSimulation()) {
                     islandLive.simulation();
-                    //VegetationLive.getInstance().nextTurnVeg();
                     Thread.sleep(700);
+                }
+
+                System.out.println("==============");
+                System.out.println("Конец симуляции.");
+                System.out.println("==============");
+                isRunning=false;
+
+            }
+            catch(Exception e){
+                throw new RuntimeException(e);
             }
 
-            System.out.println("==============");
-            System.out.println("Конец симуляции.");
-            System.out.println("==============");
-            thread.interrupt();
-            isRunning=false;
+    });
+        thread1.start();
+        System.out.println("Нить 1 работает: "+thread1.isAlive());
 
-        }
-        catch(Exception e){
-            throw new RuntimeException(e);
-        }
+        Thread thread2=new Thread(() -> {
+            while (isRunning){
+                try {
+                    Thread.sleep(700);
+                } catch (InterruptedException e) {
+                    throw new RuntimeException(e);
+                }
+                VegetationLive.getInstance().simulation();
+            }
+        });
+        thread2.start();
+        System.out.println("Нить 2 работает: "+thread2.isAlive());
 
     }
+
 }

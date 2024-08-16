@@ -1,7 +1,7 @@
 package org.example.island.factory;
 
 import org.example.animals.Animal;
-import org.example.animals.poolAnimals.*;
+import org.example.animals.pooll.*;
 
 import static org.example.island.characters.AnimalCharacters.*;
 import static org.example.island.characters.IslandCharacters.*;

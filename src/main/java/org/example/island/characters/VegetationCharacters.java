@@ -24,12 +24,12 @@ public class VegetationCharacters {
 
     public static final String HERB_NAME="Herb";
     public static final double HERB_WEIGHT=5;
-    public static final int HERB_MAX_IN_CAGE=330;
+    public static final int HERB_MAX_IN_CAGE=250;
     public static final String BERRIES_NAME="Berries";
     public static final double BERRIES_WEIGHT=15;
-    public static final int BERRIES_MAX_IN_CAGE=330;
+    public static final int BERRIES_MAX_IN_CAGE=250;
     public static final String MUSHROOM_NAME="Mushroom";
     public static final double MUSHROOM_WEIGHT=25;
-    public static final int MUSHROOM_MAX_IN_CAGE=330;
+    public static final int MUSHROOM_MAX_IN_CAGE=250;
 
 }

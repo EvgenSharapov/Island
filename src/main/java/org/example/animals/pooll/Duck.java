@@ -1,4 +1,4 @@
-package org.example.animals.poolAnimals;
+package org.example.animals.pooll;
 
 import org.example.animals.Animal;
 import org.example.animals.Herbivore;
