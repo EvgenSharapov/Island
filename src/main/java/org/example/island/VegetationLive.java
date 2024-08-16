@@ -5,6 +5,7 @@ import org.example.vegetation.Vegetation;
 
 
 import java.util.*;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 import static org.example.island.characters.IslandCharacters.*;
 public class VegetationLive {
@@ -13,9 +14,17 @@ public class VegetationLive {
     public static VegetationLive getInstance() {
         return ourInstance;
     }
-    private VegetationLive() {
-    }
-    ArrayList<Vegetation>[][] vegetationPull = new ArrayList[WIDTH][HEIGHT];
+    private VegetationLive() {}
+
+
+    ArrayList<Vegetation>[][] vegetationPull =new ArrayList[WIDTH][HEIGHT];
+
+    private Map<String, Integer>[][] countInCage = new HashMap[WIDTH][HEIGHT];
+
+    private Map<String,Integer>countAll=new HashMap<>();
+    private int countVegetation;
+
+
 
     public synchronized ArrayList<Vegetation>[][] getVegetationPull() {
         return vegetationPull;
@@ -24,15 +33,9 @@ public class VegetationLive {
         this.vegetationPull = vegetationPull;
     }
 
-    private Map<String, Integer>[][] countInCage = new HashMap[WIDTH][HEIGHT];
-
     public Map<String, Integer> getCountAll() {
         return countAll;
     }
-
-    private Map<String,Integer>countAll=new HashMap<>();
-    private int countVegetation;
-
 
 
     public void initializeVegetation() {
@@ -49,18 +52,22 @@ public class VegetationLive {
         for (int i = 0; i < WIDTH; i++) {
             for (int j = 0; j < HEIGHT; j++) {
 
-                List<Vegetation> vegetation =Collections.synchronizedList(vegetationPull[i][j]);
+                CopyOnWriteArrayList<Vegetation> vegetation =new CopyOnWriteArrayList<>(vegetationPull[i][j]);
 
                 Map<String, Integer> vegTemp = new HashMap<>();
                 for (String str : VegetationCharacters.getInstance().vegetationInCage.keySet()) {
                     countVegetation = 0;
+                    //////////////////
                     try{
                     for (Vegetation veg : vegetation) {
+                        if(veg==null){continue;}
                         if (veg.toString().equals(str)) {
                             countVegetation++;
                         }
-                    }}catch (Exception ignore){
+                    }}catch (Exception e){
+                        System.out.println("countInCageAll"+e);
                     }
+                    ///////////////////////
                     vegTemp.put(str, countVegetation);
                 }
                 countInCage[i][j] = vegTemp;
@@ -74,13 +81,18 @@ public class VegetationLive {
                     IslandCage islandCage=new IslandCage();
                     vegetationPull[i][j]=islandCage.getRandVegetationInCageStart(POPULATION_VEGETATION_IN_EMPTY);
                 }
-                List<Vegetation> vegetation =Collections.synchronizedList(vegetationPull[i][j]);
+                CopyOnWriteArrayList<Vegetation> vegetation =new CopyOnWriteArrayList<>(vegetationPull[i][j]);
+                //////////////////
 try{
                 for (Vegetation veg : new ArrayList<>(vegetation)) {
+                    if(veg==null){continue;}
                     if(countInCage[i][j].get(veg.toString())>=VegetationCharacters.getInstance().vegetationInCage.get(veg.toString())){continue;}
                     if(veg.reproduction()){
                         vegetationPull[i][j].add(FactoryVegetation.create(veg.toString()));}
-                }}catch (NullPointerException ignore){}
+                }}catch (NullPointerException e){
+    System.out.println("vegetationReproduction"+e);
+}
+////////////////////
             }
         }
     }
@@ -102,11 +114,16 @@ try{
     public void nextTurnVeg(){
         for (int i = 0; i < WIDTH; i++) {
             for (int j = 0; j < HEIGHT; j++) {
-                ArrayList<Vegetation> vegetation = vegetationPull[i][j];
+                CopyOnWriteArrayList<Vegetation> vegetation =new CopyOnWriteArrayList<>(vegetationPull[i][j]);
+                ////////////
                 try{
                 for (Vegetation veg : new ArrayList<>(vegetation)) {
+                    if(veg==null){continue;}
                     veg.setReproduction(false);
-                }}catch (NullPointerException ignore){}
+                }}catch (NullPointerException e){
+                    System.out.println("nextTurnVeg"+e);
+                }
+                /////////////
 
             }
         }

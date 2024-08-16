@@ -15,7 +15,7 @@ public class Bug extends Herbivore {
 
     @Override
     public boolean eat(Vegetation vegetation) {
-        super.setEat(true);
+        super.setEat(false);
         return false;
     }
 }

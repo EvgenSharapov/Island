@@ -24,6 +24,8 @@ public class RunWorld{
                 System.out.println("==============");
                 System.out.println("Конец симуляции.");
                 System.out.println("==============");
+                System.out.println("Загублено невинных душ за время симуляции: "+islandLive.getAnimalCounterForSimulation());
+                System.out.println("Съедено растений за время симуляции: "+islandLive.getVegetationCounterForSimulation());
                 isRunning=false;
 
             }

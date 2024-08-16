@@ -9,6 +9,7 @@ import org.example.vegetation.Vegetation;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.concurrent.atomic.AtomicInteger;
 
@@ -30,13 +31,25 @@ public class IslandLive {
     private int animalsEaten;
     private int vegetationEaten;
     private boolean isEndSimulation=false;
+    private int vegetationCounterForSimulation;
+    private int animalCounterForSimulation;
 
     public Map<String, Integer>[][] animalsMax = new HashMap[WIDTH][HEIGHT];
     public boolean isEndSimulation() {
         return isEndSimulation;
     }
 
+    public int getVegetationCounterForSimulation() {
+        return vegetationCounterForSimulation;
+    }
+
+    public int getAnimalCounterForSimulation() {
+        return animalCounterForSimulation;
+    }
+
     public  void initialize() {
+        vegetationCounterForSimulation=0;
+        animalCounterForSimulation=0;
         for (int i = 0; i < WIDTH; i++) {
             for (int j = 0; j < HEIGHT; j++) {
                 IslandCage islandCage=new IslandCage();
@@ -259,6 +272,8 @@ public class IslandLive {
         System.out.println("Умерло от старости: "+countAgeDeath);
         System.out.println("Cъедено животных: "+animalsEaten);
         System.out.println("Съедено растений: "+vegetationEaten);
+        animalCounterForSimulation+=countHungerDeath+countAgeDeath+animalsEaten;
+        vegetationCounterForSimulation+=vegetationEaten;
     }
     public  void simulation(){
         countingAnimal();
