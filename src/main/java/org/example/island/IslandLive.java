@@ -20,6 +20,7 @@ public class IslandLive {
     private int countAnimalInCage;
     private int countAllAnimals;
     private int countHungerDeath;
+    private int countNewAnimal;
     private int countAgeDeath;
     private int ageOfTheIsland;
     private int animalsEaten;
@@ -180,7 +181,7 @@ public class IslandLive {
                     for (Animal anim : new ArrayList<>(animals)) {
                         if (animal[x].eat(anim)) {
                             if(anim.getWeight()>animal[x].getMaxEat()){
-                            animal[x].setWeight(animal[x].getWeight()+animal[x].getMaxEat());}
+                                animal[x].setWeight(animal[x].getWeight()+animal[x].getMaxEat());}
                             else{animal[x].setWeight(animal[x].getWeight()+anim.getWeight());}
                             island[i][j].remove(anim);
                             animalsEaten++;
@@ -206,7 +207,7 @@ public class IslandLive {
         VegetationLive.getInstance().setVegetationPull(vegTemp);
     }
     private  void allReproduction(){
-
+countAllAnimals=0;
         for (int i = 0; i < WIDTH; i++) {
             for (int j = 0; j < HEIGHT; j++) {
                 Animal[]animal= island[i][j].toArray(new Animal[island[i][j].size()]);
@@ -218,7 +219,8 @@ public class IslandLive {
                         if(animalsMax[i][j].get(anim.toString())>=AnimalCharacters.getInstance().animalsCage.get(anim.toString())){continue;}
                         if((animal[x].getAge()>3)&&animal[x].reproduction(anim)){
                             if(Randomizer.getInstance().randomizer(10)<CHANCE_REPRODUCTION){
-                            island[i][j].add(FactoryAnimals.create(anim.toString()));}
+                            island[i][j].add(FactoryAnimals.create(anim.toString(),0));countAllAnimals++;}
+
                         }
                     }
                 }
@@ -264,6 +266,7 @@ public class IslandLive {
         System.out.println("Возраст острова: "+ageOfTheIsland);
         System.out.println("Умерло от голода: "+countHungerDeath);
         System.out.println("Умерло от старости: "+countAgeDeath);
+        System.out.println("Родилось животных: "+countAllAnimals);
         System.out.println("Cъедено животных: "+animalsEaten);
         System.out.println("Съедено растений: "+vegetationEaten);
         animalCounterForSimulation+=countHungerDeath+countAgeDeath+animalsEaten;

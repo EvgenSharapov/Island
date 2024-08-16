@@ -1,7 +1,10 @@
 package org.example.island;
+import com.sun.tools.javac.Main;
 import org.example.island.characters.VegetationCharacters;
 import org.example.island.factory.FactoryVegetation;
 import org.example.vegetation.Vegetation;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 
 import java.util.*;
@@ -10,6 +13,7 @@ import java.util.concurrent.CopyOnWriteArrayList;
 import static org.example.island.characters.IslandCharacters.*;
 public class VegetationLive {
     private static VegetationLive ourInstance = new VegetationLive();
+    private static final Logger log = LoggerFactory.getLogger(VegetationLive.class);
 
     public static VegetationLive getInstance() {
         return ourInstance;
@@ -66,7 +70,7 @@ public class VegetationLive {
                             countVegetation++;
                         }
                     }}catch (Exception e){
-                        System.out.println("countInCageAll"+e);
+                       log.error("countInCageAll :{}",e);
                     }
                     vegTemp.put(str, countVegetation);
                 }
@@ -89,8 +93,8 @@ public class VegetationLive {
                     if(countInCage[i][j].get(veg.toString())>=VegetationCharacters.getInstance().vegetationInCage.get(veg.toString())){continue;}
                     if(veg.reproduction()){
                         vegetationPull[i][j].add(FactoryVegetation.create(veg.toString()));}
-                }}catch (NullPointerException e){
-    System.out.println("vegetationReproduction"+e);
+                }}catch (Exception e){
+                log.error("vegetationReproduction :{}",e);
 }
             }
         }
@@ -118,8 +122,8 @@ public class VegetationLive {
                 for (Vegetation veg : new ArrayList<>(vegetation)) {
                     if(veg==null){continue;}
                     veg.setReproduction(false);
-                }}catch (NullPointerException e){
-                    System.out.println("nextTurnVeg"+e);
+                }}catch (Exception e){
+                    log.error("nextTurnVeg :{}",e);
                 }
             }
         }

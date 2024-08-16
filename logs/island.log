@@ -1,0 +1,38 @@
+2024-08-16 18:30:40,349 WARN  com.sun.tools.javac.Main: Нить 1 работает: true
+2024-08-16 18:30:40,352 WARN  com.sun.tools.javac.Main: Нить 2 работает: true
+2024-08-16 18:31:14,595 INFO  com.sun.tools.javac.Main: Нить 1 работает: true
+2024-08-16 18:31:14,598 INFO  com.sun.tools.javac.Main: Нить 2 работает: true
+2024-08-16 18:36:24,655 WARN  com.sun.tools.javac.Main: Нить 1 работает: true
+2024-08-16 18:36:24,659 WARN  com.sun.tools.javac.Main: Нить 2 работает: true
+2024-08-16 21:52:22,215 WARN  com.sun.tools.javac.Main: Нить 1 работает: true
+2024-08-16 21:52:22,218 WARN  com.sun.tools.javac.Main: Нить 2 работает: true
+2024-08-16 21:52:32,840 WARN  com.sun.tools.javac.Main: Нить 1 работает: true
+2024-08-16 21:52:32,844 WARN  com.sun.tools.javac.Main: Нить 2 работает: true
+2024-08-16 21:53:05,836 WARN  com.sun.tools.javac.Main: Нить 1 работает: true
+2024-08-16 21:53:05,839 WARN  com.sun.tools.javac.Main: Нить 2 работает: true
+2024-08-16 21:57:09,597 WARN  com.sun.tools.javac.Main: Нить 1 работает: true
+2024-08-16 21:57:09,600 WARN  com.sun.tools.javac.Main: Нить 2 работает: true
+2024-08-16 22:08:38,007 WARN  com.sun.tools.javac.Main: Нить 1 работает: true
+2024-08-16 22:08:38,010 WARN  com.sun.tools.javac.Main: Нить 2 работает: true
+2024-08-16 23:34:43,211 WARN  com.sun.tools.javac.Main: Нить 1 работает: true
+2024-08-16 23:34:43,214 WARN  com.sun.tools.javac.Main: Нить 2 работает: true
+2024-08-16 23:35:24,445 WARN  com.sun.tools.javac.Main: Нить 1 работает: true
+2024-08-16 23:35:24,448 WARN  com.sun.tools.javac.Main: Нить 2 работает: true
+2024-08-16 23:40:20,240 WARN  com.sun.tools.javac.Main: Нить 1 работает: true
+2024-08-16 23:40:20,243 WARN  com.sun.tools.javac.Main: Нить 2 работает: true
+2024-08-16 23:40:36,300 ERROR com.sun.tools.javac.Main: Нить 1:{}
+java.lang.NullPointerException: null
+	at org.example.island.IslandLive.eatAll(IslandLive.java:196) ~[classes/:?]
+	at org.example.island.IslandLive.simulation(IslandLive.java:302) ~[classes/:?]
+	at org.example.RunWorld.lambda$main$0(RunWorld.java:22) ~[classes/:?]
+	at java.lang.Thread.run(Thread.java:834) ~[?:?]
+2024-08-16 23:42:03,760 WARN  com.sun.tools.javac.Main: Нить 1 работает: true
+2024-08-16 23:42:03,762 WARN  com.sun.tools.javac.Main: Нить 2 работает: true
+2024-08-16 23:44:18,529 WARN  com.sun.tools.javac.Main: Нить 1 работает: true
+2024-08-16 23:44:18,531 WARN  com.sun.tools.javac.Main: Нить 2 работает: true
+2024-08-16 23:46:44,097 WARN  com.sun.tools.javac.Main: Нить 1 работает: true
+2024-08-16 23:46:44,099 WARN  com.sun.tools.javac.Main: Нить 2 работает: true
+2024-08-16 23:47:36,429 WARN  com.sun.tools.javac.Main: Нить 1 работает: true
+2024-08-16 23:47:36,433 WARN  com.sun.tools.javac.Main: Нить 2 работает: true
+2024-08-16 23:54:07,929 WARN  com.sun.tools.javac.Main: Нить 1 работает: true
+2024-08-16 23:54:07,932 WARN  com.sun.tools.javac.Main: Нить 2 работает: true

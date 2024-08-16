@@ -16,11 +16,11 @@ public class IslandCage {
         ArrayList<Animal>animals=new ArrayList<>();
         for (String str:AnimalCharacters.getInstance().animalsCage.keySet()){
             int population=AnimalCharacters.getInstance().animalsCage.get(str)*START_POPULATION_ANIMAL;
-            if(population<200){population=200;}
-            int random= Randomizer.getInstance().randomizer(population/100);
+            if(population<100){population=100;}
+            int random= Randomizer.getInstance().randomizer(population/100+1);
             if(random!=0){
                 for(int i=0;i<=random;i++){
-                    animals.add(FactoryAnimals.create(str));
+                    animals.add(FactoryAnimals.create(str,Randomizer.getInstance().randomizer(START_MAX_AGE_ANIMAL)));
                 }
             }
         }

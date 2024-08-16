@@ -64,7 +64,7 @@ public class AnimalCharacters {
 
     public static final String WOLF_NAME="Wolf";
     public static final double WOLF_WEIGHT=50;
-    public static final int WOLF_MAX_IN_CAGE=30;
+    public static final int WOLF_MAX_IN_CAGE=50;
     public static final int WOLF_MAX_SPEED=3;
     public static final double WOLF_MAX_EAT=8;
     public static final String RABBIT_NAME="Rabbit";
@@ -75,7 +75,7 @@ public class AnimalCharacters {
 
     public static final String FOX_NAME="Fox";
     public static final double FOX_WEIGHT=8;
-    public static final int FOX_MAX_IN_CAGE=30;
+    public static final int FOX_MAX_IN_CAGE=50;
     public static final int FOX_MAX_SPEED=2;
     public static final double FOX_MAX_EAT=2;
     public static final String BOA_NAME="Boa";
@@ -103,7 +103,7 @@ public class AnimalCharacters {
     public static final double HORSE_WEIGHT=400;
     public static final int HORSE_MAX_IN_CAGE=20;
     public static final int HORSE_MAX_SPEED=4;
-    public static final double HORSE_MAX_EAT=1;
+    public static final double HORSE_MAX_EAT=60;
     public static final String DEER_NAME="Deer";
     public static final double DEER_WEIGHT=300;
     public static final int DEER_MAX_IN_CAGE=20;

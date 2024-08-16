@@ -5,6 +5,8 @@ import org.example.island.VegetationLive;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import static org.example.island.characters.IslandCharacters.TIMEOUT;
+
 
 public class RunWorld{
     static boolean isRunning=true;
@@ -18,40 +20,42 @@ public class RunWorld{
             try {
                 while (!islandLive.isEndSimulation()) {
                     islandLive.simulation();
-                    Thread.sleep(700);
+                    Thread.sleep(TIMEOUT);
                 }
 
                 System.out.println("==============");
                 System.out.println("Конец симуляции.");
                 System.out.println("==============");
+                log.debug("Конец симуляции,умерших животных:{}",islandLive.getAnimalCounterForSimulation());
+                log.debug("Конец симуляции,сьедено растений:{}",islandLive.getVegetationCounterForSimulation());
                 System.out.println("Загублено невинных душ за время симуляции: "+islandLive.getAnimalCounterForSimulation());
                 System.out.println("Съедено растений за время симуляции: "+islandLive.getVegetationCounterForSimulation());
                 isRunning=false;
 
             }
             catch(Exception e){
-                log.error("Нить 1:"+e);
+                log.error("Нить 1:{}",e);
                 throw new RuntimeException(e);
             }
 
     });
         thread1.start();
-        log.warn("Нить 1 работает: "+thread1.isAlive());
+        log.warn("Нить 1 работает: {}",thread1.isAlive());
         System.out.println("Нить 1 работает: "+thread1.isAlive());
 
         Thread thread2=new Thread(() -> {
             while (isRunning){
                 try {
-                    Thread.sleep(700);
+                    Thread.sleep(TIMEOUT);
                 } catch (InterruptedException e) {
-                    log.error("Нить 2:"+e);
+                    log.error("Нить 2:{}",e);
                     throw new RuntimeException(e);
                 }
                 VegetationLive.getInstance().simulation();
             }
         });
         thread2.start();
-        log.warn("Нить 2 работает: "+thread2.isAlive());
+        log.warn("Нить 2 работает: {}",thread2.isAlive());
         System.out.println("Нить 2 работает: "+thread2.isAlive());
 
     }
