@@ -15,7 +15,7 @@ public class VegetationLive {
     }
     private VegetationLive() {
     }
-     ArrayList<Vegetation>[][] vegetationPull = new ArrayList[WIDTH][HEIGHT];
+    ArrayList<Vegetation>[][] vegetationPull = new ArrayList[WIDTH][HEIGHT];
 
     public synchronized ArrayList<Vegetation>[][] getVegetationPull() {
         return vegetationPull;
@@ -39,7 +39,7 @@ public class VegetationLive {
         for (int i = 0; i < WIDTH; i++) {
             for (int j = 0; j < HEIGHT; j++) {
                 IslandCage islandCage=new IslandCage();
-                vegetationPull[i][j]=islandCage.getRandVegetationInCageStart();
+                vegetationPull[i][j]=islandCage.getRandVegetationInCageStart(START_POPULATION_VEGETATION);
             }
         }
     }
@@ -54,10 +54,12 @@ public class VegetationLive {
                 Map<String, Integer> vegTemp = new HashMap<>();
                 for (String str : VegetationCharacters.getInstance().vegetationInCage.keySet()) {
                     countVegetation = 0;
+                    try{
                     for (Vegetation veg : vegetation) {
                         if (veg.toString().equals(str)) {
                             countVegetation++;
                         }
+                    }}catch (Exception ignore){
                     }
                     vegTemp.put(str, countVegetation);
                 }
@@ -68,15 +70,20 @@ public class VegetationLive {
     public synchronized void vegetationReproduction() {
         for (int i = 0; i < WIDTH; i++) {
             for (int j = 0; j < HEIGHT; j++) {
-                ArrayList<Vegetation> vegetation = vegetationPull[i][j];
-                    for (Vegetation veg : new ArrayList<>(vegetation)) {
-                       if(countInCage[i][j].get(veg.toString())>=VegetationCharacters.getInstance().vegetationInCage.get(veg.toString())){continue;}
-                        if(veg.reproduction()){
-                                vegetationPull[i][j].add(FactoryVegetation.create(veg.toString()));}
-                        }
-                    }
+                if(vegetationPull[i][j].isEmpty()){
+                    IslandCage islandCage=new IslandCage();
+                    vegetationPull[i][j]=islandCage.getRandVegetationInCageStart(POPULATION_VEGETATION_IN_EMPTY);
                 }
+                List<Vegetation> vegetation =Collections.synchronizedList(vegetationPull[i][j]);
+try{
+                for (Vegetation veg : new ArrayList<>(vegetation)) {
+                    if(countInCage[i][j].get(veg.toString())>=VegetationCharacters.getInstance().vegetationInCage.get(veg.toString())){continue;}
+                    if(veg.reproduction()){
+                        vegetationPull[i][j].add(FactoryVegetation.create(veg.toString()));}
+                }}catch (NullPointerException ignore){}
             }
+        }
+    }
     public void countAll() {
         for (String str : VegetationCharacters.getInstance().vegetationInCage.keySet()) {
             int count = 0;
@@ -96,11 +103,19 @@ public class VegetationLive {
         for (int i = 0; i < WIDTH; i++) {
             for (int j = 0; j < HEIGHT; j++) {
                 ArrayList<Vegetation> vegetation = vegetationPull[i][j];
+                try{
                 for (Vegetation veg : new ArrayList<>(vegetation)) {
                     veg.setReproduction(false);
-                }
+                }}catch (NullPointerException ignore){}
+
             }
         }
 
+    }
+    public void simulation(){
+        countInCageAll();
+        countAll();
+        vegetationReproduction();
+        nextTurnVeg();
     }
 }

@@ -20,5 +20,6 @@ public class IslandCharacters {
     public static final int NUMBER_TURN_SIMULATION_ISLAND=60;
     public static final int START_POPULATION_ANIMAL=15;//5%
 
-    public static final int START_POPULATION_VEGETATION=23;//5%
+    public static final int START_POPULATION_VEGETATION=40;//23%
+    public static final int POPULATION_VEGETATION_IN_EMPTY=10;//5%
 }

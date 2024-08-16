@@ -7,7 +7,7 @@ import org.example.island.VegetationLive;
 public class RunWorld implements Runnable {
     String name;
     Thread thread;
-    static boolean isRunning=false;
+    static boolean isRunning=true;
 
     public RunWorld(String name) {
         this.name = name;
@@ -16,15 +16,12 @@ public class RunWorld implements Runnable {
     }
 
     public static void main(String[] args) throws InterruptedException {
-        IslandLive islandLive = new IslandLive();
-        RunWorld runWorld1 = new RunWorld("runWorld1");
-        runWorld1.thread.start();
-        System.out.println("Поток r1 работает:" + runWorld1.thread.isAlive());
+        RunWorld runWorld = new RunWorld("runWorld");
+        runWorld.thread.start();
+        System.out.println("Поток r1 работает:" + runWorld.thread.isAlive());
         while (isRunning){
             Thread.sleep(700);
-            VegetationLive.getInstance().vegetationReproduction();
-            VegetationLive.getInstance().countInCageAll();
-            VegetationLive.getInstance().countAll();
+            VegetationLive.getInstance().simulation();
         }
 
 
@@ -33,7 +30,6 @@ public class RunWorld implements Runnable {
 
     @Override
     public void run() {
-        isRunning=true;
         IslandLive islandLive = new IslandLive();
         islandLive.initialize();
         VegetationLive.getInstance().initializeVegetation();
@@ -42,8 +38,8 @@ public class RunWorld implements Runnable {
         try {
             while (!islandLive.isEndSimulation()) {
                     islandLive.simulation();
-                    VegetationLive.getInstance().nextTurnVeg();
-                    Thread.sleep(1000);
+                    //VegetationLive.getInstance().nextTurnVeg();
+                    Thread.sleep(700);
             }
 
             System.out.println("==============");

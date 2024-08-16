@@ -27,10 +27,10 @@ public class IslandCage {
         Collections.shuffle(animals);
         return animals;
     }
-    public ArrayList<Vegetation> getRandVegetationInCageStart() {
+    public ArrayList<Vegetation> getRandVegetationInCageStart(int howMany) {
         ArrayList<Vegetation>vegetation=new ArrayList<>();
         for (String str: VegetationCharacters.getInstance().vegetationInCage.keySet()){
-            int population=VegetationCharacters.getInstance().vegetationInCage.get(str)*START_POPULATION_VEGETATION;
+            int population=VegetationCharacters.getInstance().vegetationInCage.get(str)*howMany;
 
             if(population<100){population=100;}
             int random= Randomizer.getInstance().randomizer(population/100);

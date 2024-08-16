@@ -182,9 +182,10 @@ public class IslandLive {
                         else {animal[x].setEat(true);break;}
                     }
                     for(Vegetation vegetation:new ArrayList<>(vegTemp[i][j])){
-                        if(animal[x].eat(vegetation)){
-                            if(vegetation.getWeight()>animal[x].getMaxEat()){
-                                animal[x].setWeight(animal[x].getWeight()+animal[x].getMaxEat());
+
+                        if(animal[x].eat(vegetation)&&animal[x]!=null&&vegetation!=null){
+                            if(vegetation.getWeight()>animal[x].getMaxEat()) {
+                                animal[x].setWeight(animal[x].getWeight() + animal[x].getMaxEat());
                             }
                             else{animal[x].setWeight(animal[x].getWeight()+vegetation.getWeight());}
                             vegTemp[i][j].remove(vegetation);

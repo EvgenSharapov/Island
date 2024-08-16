@@ -96,7 +96,7 @@ public class AnimalCharacters {
     public static final double EAGLE_MAX_EAT=1;
     public static final String DUCK_NAME="Duck";
     public static final double DUCK_WEIGHT=4;
-    public static final int DUCK_MAX_IN_CAGE=200;
+    public static final int DUCK_MAX_IN_CAGE=140;
     public static final int DUCK_MAX_SPEED=4;
     public static final double DUCK_MAX_EAT=1;
 
@@ -122,13 +122,13 @@ public class AnimalCharacters {
     public static final double MOUSE_MAX_EAT=0.01;
     public static final String GOAT_NAME="Goat";
     public static final double GOAT_WEIGHT=60;
-    public static final int GOAT_MAX_IN_CAGE=140;
+    public static final int GOAT_MAX_IN_CAGE=40;
     public static final int GOAT_MAX_SPEED=3;
     public static final double GOAT_MAX_EAT=10;
 
     public static final String SHEEP_NAME="Sheep";
     public static final double SHEEP_WEIGHT=70;
-    public static final int SHEEP_MAX_IN_CAGE=140;
+    public static final int SHEEP_MAX_IN_CAGE=40;
     public static final int SHEEP_MAX_SPEED=3;
     public static final double SHEEP_MAX_EAT=15;
     public static final String WILD_BOAR_NAME="WildBoar";
@@ -143,7 +143,7 @@ public class AnimalCharacters {
     public static final double BUFFALO_MAX_EAT=100;
     public static final String BUG_NAME="Bug";
     public static final double BUG_WEIGHT=0.02;
-    public static final int BUG_MAX_IN_CAGE=200;
+    public static final int BUG_MAX_IN_CAGE=600;
     public static final int BUG_MAX_SPEED=1;
     public static final double BUG_MAX_EAT=0;
 
