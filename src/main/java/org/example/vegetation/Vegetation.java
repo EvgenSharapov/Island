@@ -1,8 +1,6 @@
 package org.example.vegetation;
 
 import org.example.island.Randomizer;
-import org.example.island.factory.FactoryVegetation;
-
 import static org.example.island.characters.IslandCharacters.*;
 
 public abstract class Vegetation {

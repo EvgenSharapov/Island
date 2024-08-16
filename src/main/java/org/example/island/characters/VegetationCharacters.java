@@ -1,7 +1,4 @@
 package org.example.island.characters;
-
-import org.example.vegetation.Vegetation;
-
 import java.util.HashMap;
 import java.util.Map;
 

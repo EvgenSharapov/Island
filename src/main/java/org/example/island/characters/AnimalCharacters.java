@@ -1,10 +1,4 @@
 package org.example.island.characters;
-
-import org.example.animals.Animal;
-import org.example.island.Randomizer;
-
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 

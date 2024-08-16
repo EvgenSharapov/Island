@@ -4,15 +4,9 @@ import org.example.animals.Direction;
 import org.example.island.characters.AnimalCharacters;
 import org.example.island.factory.FactoryAnimals;
 import org.example.vegetation.Vegetation;
-
-
-
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
-import java.util.concurrent.atomic.AtomicInteger;
-
 import static org.example.island.characters.AnimalCharacters.*;
 import static org.example.island.characters.IslandCharacters.*;
 import static org.example.island.characters.VegetationCharacters.*;

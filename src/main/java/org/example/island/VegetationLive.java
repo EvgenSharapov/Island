@@ -45,10 +45,12 @@ public class VegetationLive {
                 vegetationPull[i][j]=islandCage.getRandVegetationInCageStart(START_POPULATION_VEGETATION);
             }
         }
+        countInCageAll();
+        countAll();
     }
 
 
-    public synchronized void countInCageAll() {
+    private   void countInCageAll() {
         for (int i = 0; i < WIDTH; i++) {
             for (int j = 0; j < HEIGHT; j++) {
 
@@ -57,7 +59,6 @@ public class VegetationLive {
                 Map<String, Integer> vegTemp = new HashMap<>();
                 for (String str : VegetationCharacters.getInstance().vegetationInCage.keySet()) {
                     countVegetation = 0;
-                    //////////////////
                     try{
                     for (Vegetation veg : vegetation) {
                         if(veg==null){continue;}
@@ -67,14 +68,13 @@ public class VegetationLive {
                     }}catch (Exception e){
                         System.out.println("countInCageAll"+e);
                     }
-                    ///////////////////////
                     vegTemp.put(str, countVegetation);
                 }
                 countInCage[i][j] = vegTemp;
             }
         }
     }
-    public synchronized void vegetationReproduction() {
+    private   void vegetationReproduction() {
         for (int i = 0; i < WIDTH; i++) {
             for (int j = 0; j < HEIGHT; j++) {
                 if(vegetationPull[i][j].isEmpty()){
@@ -82,8 +82,8 @@ public class VegetationLive {
                     vegetationPull[i][j]=islandCage.getRandVegetationInCageStart(POPULATION_VEGETATION_IN_EMPTY);
                 }
                 CopyOnWriteArrayList<Vegetation> vegetation =new CopyOnWriteArrayList<>(vegetationPull[i][j]);
-                //////////////////
-try{
+
+                try{
                 for (Vegetation veg : new ArrayList<>(vegetation)) {
                     if(veg==null){continue;}
                     if(countInCage[i][j].get(veg.toString())>=VegetationCharacters.getInstance().vegetationInCage.get(veg.toString())){continue;}
@@ -92,11 +92,10 @@ try{
                 }}catch (NullPointerException e){
     System.out.println("vegetationReproduction"+e);
 }
-////////////////////
             }
         }
     }
-    public void countAll() {
+    private void countAll() {
         for (String str : VegetationCharacters.getInstance().vegetationInCage.keySet()) {
             int count = 0;
             for (int i = 0; i < WIDTH; i++) {
@@ -111,11 +110,10 @@ try{
             countAll.put(str, count);
         }
     }
-    public void nextTurnVeg(){
+    private void nextTurnVeg(){
         for (int i = 0; i < WIDTH; i++) {
             for (int j = 0; j < HEIGHT; j++) {
                 CopyOnWriteArrayList<Vegetation> vegetation =new CopyOnWriteArrayList<>(vegetationPull[i][j]);
-                ////////////
                 try{
                 for (Vegetation veg : new ArrayList<>(vegetation)) {
                     if(veg==null){continue;}
@@ -123,8 +121,6 @@ try{
                 }}catch (NullPointerException e){
                     System.out.println("nextTurnVeg"+e);
                 }
-                /////////////
-
             }
         }
 
