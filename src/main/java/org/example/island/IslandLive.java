@@ -10,6 +10,7 @@ import org.example.vegetation.Vegetation;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.atomic.AtomicInteger;
 
 import static org.example.island.characters.AnimalCharacters.*;
 import static org.example.island.characters.IslandCharacters.*;
@@ -35,7 +36,7 @@ public class IslandLive {
         return isEndSimulation;
     }
 
-    public void initialize() {
+    public  void initialize() {
         for (int i = 0; i < WIDTH; i++) {
             for (int j = 0; j < HEIGHT; j++) {
                 IslandCage islandCage=new IslandCage();
@@ -62,7 +63,7 @@ public class IslandLive {
             }
         }
     }
-    private void moveAll(){
+    private  void moveAll(){
         for (int i = 0; i < WIDTH; i++) {
             for (int j = 0; j < HEIGHT; j++) {
                 ArrayList<Animal> animals = island[i][j];
@@ -109,7 +110,7 @@ public class IslandLive {
             }
         }
     }
-    private void info() {
+    public  void info() {
         System.out.println("=Животные=");
         for (String str : AnimalCharacters.getInstance().animalsCage.keySet()) {
             countAllAnimals = 0;
@@ -160,7 +161,7 @@ public class IslandLive {
         System.out.println("==========");
 
     }
-    private void eatAll(){
+    private  void eatAll(){
         animalsEaten=0;
         vegetationEaten=0;
         ArrayList<Vegetation>[][]vegTemp=VegetationLive.getInstance().getVegetationPull();
@@ -196,7 +197,7 @@ public class IslandLive {
         }
         VegetationLive.getInstance().setVegetationPull(vegTemp);
     }
-    private void allReproduction(){
+    private  void allReproduction(){
 
         for (int i = 0; i < WIDTH; i++) {
             for (int j = 0; j < HEIGHT; j++) {
@@ -220,7 +221,7 @@ public class IslandLive {
 
 
 
-    private void nextTurn() {
+    private  void nextTurn() {
         ageOfTheIsland++;
         if(ageOfTheIsland>NUMBER_TURN_SIMULATION_ISLAND){isEndSimulation=true;}
         for (int i = 0; i < WIDTH; i++) {
@@ -236,7 +237,7 @@ public class IslandLive {
             }
         }
     }
-    private void allDeath() {
+    public  void allDeath() {
         countHungerDeath=0;
         countAgeDeath=0;
 

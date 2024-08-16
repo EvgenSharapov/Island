@@ -15,12 +15,12 @@ public class VegetationLive {
     }
     private VegetationLive() {
     }
-    private ArrayList<Vegetation>[][] vegetationPull = new ArrayList[WIDTH][HEIGHT];
+     ArrayList<Vegetation>[][] vegetationPull = new ArrayList[WIDTH][HEIGHT];
 
-    public ArrayList<Vegetation>[][] getVegetationPull() {
+    public synchronized ArrayList<Vegetation>[][] getVegetationPull() {
         return vegetationPull;
     }
-    public void setVegetationPull(ArrayList<Vegetation>[][] vegetationPull) {
+    public synchronized void setVegetationPull(ArrayList<Vegetation>[][] vegetationPull) {
         this.vegetationPull = vegetationPull;
     }
 
@@ -45,11 +45,12 @@ public class VegetationLive {
     }
 
 
-    public void countInCageAll() {
+    public synchronized void countInCageAll() {
         for (int i = 0; i < WIDTH; i++) {
             for (int j = 0; j < HEIGHT; j++) {
 
-                ArrayList<Vegetation> vegetation = vegetationPull[i][j];
+                List<Vegetation> vegetation =Collections.synchronizedList(vegetationPull[i][j]);
+
                 Map<String, Integer> vegTemp = new HashMap<>();
                 for (String str : VegetationCharacters.getInstance().vegetationInCage.keySet()) {
                     countVegetation = 0;
@@ -64,7 +65,7 @@ public class VegetationLive {
             }
         }
     }
-    public void vegetationReproduction() {
+    public synchronized void vegetationReproduction() {
         for (int i = 0; i < WIDTH; i++) {
             for (int j = 0; j < HEIGHT; j++) {
                 ArrayList<Vegetation> vegetation = vegetationPull[i][j];
